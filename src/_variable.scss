@@ -1,0 +1,23 @@
+:root {
+    // --sa-primary: #e08527;
+    --sa-primary: #ee2e31;
+    --sa-primary-red: #ec4c4c;
+    --sa-primary-orange: #e08527;
+    --sa-primary-default: #1d7874;
+    --sa-secondary: #679289;
+    --sa-warning: #f4c095;
+    --sa-danger: #ee2e31;
+    --sa-light: #f4f5f8;
+    --sa-dark: #071e22;
+    --sa-grey: #c1c1c1;
+}
+
+ion-content {
+  --ion-background-color: var(--ion-color-lightapp);
+}
+
+ion-item {
+  --highlight-color-valid: transparent;
+  --highlight-color-invalid: transparent;
+  --highlight-color-focused: var(--ion-color-light);
+}

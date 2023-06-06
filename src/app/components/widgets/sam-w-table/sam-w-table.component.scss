@@ -1,0 +1,82 @@
+.table-wrapper {
+    background: #e9e9ec;
+    // white-space: nowrap;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: auto;
+}
+
+thead th:first-child {
+    border-radius: 10px 0 0 0;
+}
+
+thead th:last-child {
+    border-radius: 0 10px 0 0;
+}
+
+th {
+    // background: #DDD;
+    background-color: var(--sa-primary);
+    color: #fff;
+}
+
+td,
+th {
+    padding: 10px;
+    text-align: left;
+    z-index: 2;
+}
+
+tr {
+    border-bottom: 1px solid #c1c1c1;
+}
+
+td {
+    padding: 10px;
+    
+}
+
+
+
+.mat-button,
+.mat-flat-button,
+.mat-stroked-button,
+.mat-icon-button,
+.mat-fab,
+.mat-mini-fab,
+.mat-raised-button {
+    background-color: var(--sa-primary);
+    color: #fff;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: var(--sa-primary);
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    color: var(--ion-color-primaryapp) !important;
+}
+
+::ng-deep .mat-focused .mat-label {
+    color: var(--ion-color-primaryapp) !important;
+}
+
+::ng-deep .mat-focused .mat-select-arrow {
+    color: var(--ion-color-primaryapp) !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: var(--sa-primary) !important;
+}
+
+.mat-spinner circle,
+::ng-deep.mat-progress-spinner circle {
+    stroke: var(--sa-primary);
+}

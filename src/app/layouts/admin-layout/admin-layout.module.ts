@@ -13,10 +13,17 @@ import { NotificationsComponent } from '../../notifications/notifications.compon
 import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 import {MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
+import { FeatureAppComponent } from 'app/feature-app/feature-app.component';
+import { OutletComponent } from 'app/outlet/outlet.component';
+import { DistrictModalComponent, OutletModalComponent } from 'app/outlet/modal/outlet-modal.component';
+import { SamWTableComponent } from 'app/components/widgets/sam-w-table/sam-w-table.component';
+import { SamWDropdownComponent } from 'app/components/widgets/sam-w-dropdown/sam-w-dropdown.component';
+import { MaterialModule } from 'app/modules/material.module';
 
 @NgModule({
   imports: [
@@ -30,6 +37,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    MatInputModule,
+    MatIconModule,
+    MaterialModule
+    
   ],
   declarations: [
     DashboardComponent,
@@ -40,6 +51,13 @@ import {MatSelectModule} from '@angular/material/select';
     MapsComponent,
     NotificationsComponent,
     UpgradeComponent,
+    FeatureAppComponent,
+    OutletComponent,
+    OutletModalComponent,
+    DistrictModalComponent,
+    SamWTableComponent,
+    SamWDropdownComponent,
+    
   ]
 })
 

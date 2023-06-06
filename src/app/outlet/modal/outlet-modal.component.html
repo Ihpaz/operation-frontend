@@ -1,0 +1,49 @@
+<div class="training-modal">
+    <h3>Add Outlet</h3>
+
+    <div class="modal-wrapper-area">
+        <div class="form-area">
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Area Manager</mat-label>
+                <input matInput [placeholder]="'Area Manager'" [(ngModel)]="modelData.Am">
+            </mat-form-field>
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>DRM</mat-label>
+                <input matInput [placeholder]="'DRM'" [(ngModel)]="modelData.Drm">
+            </mat-form-field>
+
+            <div style="width: 100%;display: flex;justify-content: space-between;">
+                <mat-form-field appearance="fill" style="width: 25%;">
+                    <mat-label>Code Outlet</mat-label>
+                    <input matInput [placeholder]="'Code Outlet'" [(ngModel)]="modelData.CodeOutlet" >
+                </mat-form-field>
+                <mat-form-field appearance="fill" style="width: 70%;">
+                    <mat-label>Outlet Name</mat-label>
+                    <input matInput [placeholder]="'Outlet Name'" [(ngModel)]="modelData.OutletName" >
+                </mat-form-field>
+            </div>
+          
+            
+        
+            <div style="width: 100%;">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label></mat-label>
+                    <input matInput [(ngModel)]="modelData.DistrictArea" readonly>
+                    <mat-icon class="tappable" (click)="openModalDistrict()" matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+
+        
+
+        </div>
+
+        <div class="btn-area">
+            <button mat-stroked-button (click)="doCancel()" style="margin-right: 10px;"
+                [disabled]="onRequest">Cancel</button>
+            <button mat-raised-button (click)="doSave()" [disabled]="onRequest">
+                Save
+                <mat-spinner diameter="25" *ngIf="onRequest"></mat-spinner>
+            </button>
+        </div>
+    </div>
+</div>

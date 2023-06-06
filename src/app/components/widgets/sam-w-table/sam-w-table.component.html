@@ -1,0 +1,37 @@
+<div class="table-wrapper">
+    <table>
+        <thead>
+            <tr>
+                <th *ngFor="let header of schema.headers">
+                    {{ header }}
+                </th>
+                <th *ngIf="schema.withAction"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="showSpinner">
+                <tr>
+                    <td [attr.colspan]="schema.withAction ? schema.headers.length + 1 : schema.headers.length" style="text-align: center;">
+                        <mat-card style="display: flex; justify-content: center; align-items: center" [ngStyle]="{'width': '100%', 'overflow': 'auto'}">
+                            <mat-spinner></mat-spinner>
+                        </mat-card>
+                    </td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="!showSpinner && dataSource.length">
+                <ng-content></ng-content>
+            </ng-container>
+            <ng-container *ngIf="!dataSource.length && !showSpinner">
+                <tr>
+                    <td [attr.colspan]="schema.withAction ? schema.headers.length + 1 : schema.headers.length" style="text-align: center;">
+                        No Data Available
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+  
+</div>
+<mat-paginator #paginator *ngIf="schema.pageSize.length > 2 && WithPagination" [length]="totalData"
+    [pageSizeOptions]="schema.pageSize" [showFirstLastButtons]="true" (page)="eventPaginator($event)">
+</mat-paginator>
