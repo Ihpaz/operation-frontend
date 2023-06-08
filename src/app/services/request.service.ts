@@ -3,7 +3,7 @@ import Axios from "axios";
 
 export interface IRequest {
     url: string;
-    method: "GET" | "POST" | "PUT" | "DELETE";
+    method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
     parameter?: any[];
     body?: any[];
     token?: string;
@@ -38,6 +38,8 @@ export class RequestService {
                     body = await this.generateBody(iRequest.body);
                 }
 
+                console.log(iRequest,'ireq2')
+
                 const HttpClient = Axios.create();
                 let resp: any = null;
                 if (iRequest.method === "GET") {
@@ -48,9 +50,20 @@ export class RequestService {
                         body,
                         options
                     );
+                } else if (iRequest.method === "PATCH" ) {
+                    resp = await HttpClient.patch(
+                        `${iRequest.url}${param}`,
+                        body,
+                        options
+                    );
+                } else if (iRequest.method === "DELETE" ) {
+                    resp = await HttpClient.delete(
+                        `${iRequest.url}${param}`,
+                        options
+                    );
                 }
 
-                
+                console.log(resp,'response')
                 resolve(resp.data);
             } catch (error) {
                 console.log(error,'reqservice');

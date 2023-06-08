@@ -1,0 +1,39 @@
+<div class="dd-select">
+    <h3>Data Asset</h3>
+    <div class="search-area">
+        <input type="text" [(ngModel)]="search" (ngModelChange)="onSearch()" [placeholder]="'Search'">
+    </div>
+    <div class="table-wrapper" *ngIf="!onRequest">
+        <table>
+            <thead>
+                <tr>
+                    <th>Code Asset</th>
+                    <th>Asset Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tappable" *ngFor="let val of previewData;let i = index" (click)="onRowClick(i)">
+                    <td>{{ val.CodeAsset }}</td>
+                    <td>{{ val.NameAsset }}</td>
+                    <td>
+                        <label>
+                            <input type="radio" name="dataSelected" [value]="i" [checked]="val.checked"/>
+                            <span></span>
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <mat-card *ngIf="onRequest" style="display: flex; justify-content: center; align-items: center">
+        <mat-spinner></mat-spinner>
+    </mat-card>
+    <div class="btn-area">
+        <button mat-stroked-button (click)="doCancel()" style="margin-right: 10px;"
+                    [disabled]="onRequest">
+                    Cancel
+        </button>
+        <button mat-raised-button (click)="doAction()">Ok</button>
+    </div>
+</div>

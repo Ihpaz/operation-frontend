@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { OutletModalComponent } from './modal/outlet-modal.component';
+import { GoodsModalComponent } from './modal/goods-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalService } from 'app/services/global.service';
 import { ISAMWTable } from 'app/components/widgets/sam-w-table/sam-w-table.component';
 
 @Component({
-  selector: 'app-outlet',
-  templateUrl: './outlet.component.html',
-  styleUrls: ['./outlet.component.css']
+  selector: 'app-goods',
+  templateUrl: './goods.component.html',
+  styleUrls: ['./goods.component.css']
 })
-export class OutletComponent implements OnInit {
+export class GoodsComponent implements OnInit {
 
   tblSchema: ISAMWTable = {
-    name: 'MsOutlet',
-    headers: ['No','Outlet Type', 'Area Manager', 'Regional Manager','Code Outlet','Outlet Name','District Area','Ownership','Outlet Status','Address',''],
+    name: 'MsGoods',
+    headers: ['No', 'GoodsName', 'Specification','GoodsType',,''],
     requestOptions: {
-      path: 'Api/v1/Outlets/datatable',
+      path: 'Api/v1/Outlets-goods/Goods/datatable',
       params: [
-        { key: 'CodeOutlet', value: null },
-        { key: 'OutletName', value: null },
+        { key: 'GoodsName', value: null },
       ],
       paramsCanNull: true,
     },
@@ -30,8 +29,7 @@ export class OutletComponent implements OnInit {
 
   datatable: any[] = [];
   modelFilter: {
-    CodeOutlet: string;
-    OutletName: string;
+    GoodsName: string;
   };
   
   constructor(   
@@ -41,8 +39,7 @@ export class OutletComponent implements OnInit {
 
   ngOnInit() {
     this.modelFilter = {
-      CodeOutlet: '',
-      OutletName: '',
+      GoodsName: ''
     };
   }
 
@@ -51,11 +48,11 @@ export class OutletComponent implements OnInit {
   }
 
   onFilter() {
-    this._globalService.eventPublish('loadTableSAM:MsOutlet', true);
+    this._globalService.eventPublish('loadTableSAM:MsGoods', true);
   }
 
-  addOutlet() {
-    const dialogRef = this._dialog.open(OutletModalComponent, {
+  addGoods() {
+    const dialogRef = this._dialog.open(GoodsModalComponent, {
       width: '500px',
       disableClose: true,
       autoFocus: false,
@@ -66,24 +63,16 @@ export class OutletComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this._globalService.showNotif('Success save outlet');
-        this._globalService.eventPublish('loadTableSAM:MsOutlet', true);
+        this._globalService.showNotif('Success save goods');
+        this._globalService.eventPublish('loadTableSAM:MsGoods', true);
       }
     });
   }
 
-  async editOutlet(id) {
-    const data= await this.getOutletDetail(id)
-    data['EmpList']=data.employee;
-    data['EmpIDList']=[]
+  async editGoods(id) {
+    const data= await this.getGoodsDetail(id);
 
-    for(const dt of data.employee){
-      data['EmpIDList'].push(dt.EmpID)
-    }
-
-    console.log(data,'idlist')
-
-    const dialogRef = this._dialog.open(OutletModalComponent, {
+    const dialogRef = this._dialog.open(GoodsModalComponent, {
       width: '500px',
       disableClose: true,
       autoFocus: false,
@@ -92,25 +81,25 @@ export class OutletComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this._globalService.showNotif('Success edit outlet');
-        this._globalService.eventPublish('loadTableSAM:MsOutlet', true);
+        this._globalService.showNotif('Success edit goods');
+        this._globalService.eventPublish('loadTableSAM:MsGoods', true);
       }
     });
   }
 
-  async deleteOutlet(id) {
+  async deleteGoods(id) {
     const alertData = await this._globalService.showAlert('Are you sure want to delete ?');
     if (alertData.isYes) {
       try {
       
         await this._globalService.runRequest(
           'DELETE',
-          `Api/v1/Outlets/${id}`,
+          `Api/v1/Outlets-goods/${id}`,
           [],
           
         );
 
-        this._globalService.eventPublish('loadTableSAM:MsOutlet', true);
+        this._globalService.eventPublish('loadTableSAM:MsGoods', true);
 
       } catch (error) {
         this._globalService.showNotif(error.message,'error');
@@ -119,12 +108,12 @@ export class OutletComponent implements OnInit {
     }
   }
 
-  async getOutletDetail(id) {
+  async getGoodsDetail(id) {
     try {
       
       const req = await this._globalService.runRequest(
         'GET',
-        `api/v1/Outlets/detail/${id}`,
+        `api/v1/Outlets-goods/detail/${id}`,
          
       );
 
@@ -140,8 +129,8 @@ export class OutletComponent implements OnInit {
   async downloadExcel(){
     try {
       
-      const req = await this._globalService.runRequest('POST','Api/v1/Outlets/download-excel' , [], []);
-      console.log(req);
+      const req = await this._globalService.runRequest('POST','Api/v1/outlet-goods/download-excel' , [], []);
+     
       window.location.href = req;
     } catch (error) {
       

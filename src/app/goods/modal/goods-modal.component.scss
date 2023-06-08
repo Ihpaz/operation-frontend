@@ -64,18 +64,16 @@ tr {
     border-bottom: 1px solid #c1c1c1;
 }
 
-.mat-raised-button {
-    background-color: var(--sa-primary);
-    color: #fff;
-}
-
 .btn-area {
     display: flex;
     justify-content: flex-end;
     margin-top: 20px;
     padding: 20px;
 
-    
+    .mat-raised-button {
+        background-color: var(--sa-primary);
+        color: #fff;
+    }
 }
 
 label > input[type="radio"] {

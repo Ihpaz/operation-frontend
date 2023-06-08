@@ -1,53 +1,5 @@
-<!-- <div class="main-content">
-  <div class="container-fluid">
-      <div class="header">
-        <button mat-fab color="warn" aria-label="">
-            <mat-icon>add</mat-icon>
-        </button>
-      </div>
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title ">Outlet List</h4>
-                      <p class="card-category"> List All Outlet</p>
-                  </div>
-                  <div class="card-body">
-                      <div class="table-responsive">
-                          <table class="table">
-                              <thead class=" text-primary">
-                                  <th>
-                                      No
-                                  </th>
-                                  <th>
-                                      Am
-                                  </th>
-                                  <th>
-                                      DM
-                                  </th>
-                                  <th>
-                                      Code
-                                  </th>
-                                  <th>
-                                      Digital Name
-                                  </th>
-                              </thead>
-                              <tbody>
-                                
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        
-      </div>
-  </div>
-</div> -->
-
-
 <div class="title">
-    Master Outlet
+  Outlet Asset
 </div>
 
 <div class="main-page">
@@ -67,25 +19,22 @@
                 <button mat-mini-fab [matTooltip]="'Search'" (click)="onFilter()" style="margin-right: 5px;">
                     <mat-icon>search</mat-icon>
                 </button>
-                <button mat-mini-fab [matTooltip]="'Add'" (click)="addOutlet()">
+                <!-- <button mat-mini-fab [matTooltip]="'Add'" (click)="addOutlet()">
                     <mat-icon>add</mat-icon>
                 </button>
                 <button mat-mini-fab [matTooltip]="'Download'" (click)="downloadExcel()">
                     <mat-icon>download</mat-icon>
-                </button>
+                </button> -->
             </div>
         </div>
         
         <app-sam-w-table [schema]="tblSchema" [globalValue]="modelFilter" (onDataValue)="onDataValueHandler($event)">
             <tr *ngFor="let item of datatable;let i=index">
                 <td class="td-table">{{ i+1 }}</td>
-                <td class="td-table">{{ item.OutletType }}</td>
-                <td class="td-table">{{ item.Am }}</td>
-                <td class="td-table">{{ item.Drm }}</td>
                 <td class="td-table">{{ item.CodeOutlet }}</td>
                 <td class="td-table">{{ item.OutletName }}</td>
                 <td class="td-table">{{ item.DistrictArea }}</td>
-                <td class="td-table">{{ item.Ownership }}</td>
+                <td class="td-table">{{ item.OutletType }}</td>
                 <td class="td-table">
                     <mat-chip-list aria-label="Fish selection">
                         <mat-chip class="chip-warn" *ngIf="item.OutletStatus=='CLOSED'" selected>{{ item.OutletStatus }}</mat-chip>
@@ -94,13 +43,10 @@
                     </mat-chip-list>
                   
                 </td>
-                <td class="td-table">{{ item.Address }}</td>
+                <td class="td-table">{{ item.AssetTotal }}</td>
                 <td class="td-table">
                     <button mat-mini-fab [matTooltip]="'View'" (click)="editOutlet(item.id)">
                         <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-mini-fab [matTooltip]="'Delete'" (click)="deleteOutlet(item.id)">
-                        <mat-icon>delete</mat-icon>
                     </button>
                 </td>
             </tr>

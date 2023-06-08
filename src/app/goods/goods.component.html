@@ -1,0 +1,47 @@
+
+<div class="title">
+    Master Goods
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackground]="true">
+        <div class="filter-area">
+            <div class="input-area">
+               
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Goods Name</mat-label>
+                    <input matInput [placeholder]="'Goods Name'" [(ngModel)]="modelFilter.GoodsName">
+                </mat-form-field>
+            </div>
+            <div class="button-area">
+                <button mat-mini-fab [matTooltip]="'Search'" (click)="onFilter()" style="margin-right: 5px;">
+                    <mat-icon>search</mat-icon>
+                </button>
+                <button mat-mini-fab [matTooltip]="'Add'" (click)="addGoods()">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <button mat-mini-fab [matTooltip]="'Download'" (click)="downloadExcel()">
+                    <mat-icon>download</mat-icon>
+                </button>
+            </div>
+        </div>
+        
+        <app-sam-w-table [schema]="tblSchema" [globalValue]="modelFilter" (onDataValue)="onDataValueHandler($event)">
+            <tr *ngFor="let item of datatable;let i=index">
+                <td class="td-table">{{ i+1 }}</td>
+                <td class="td-table">{{ item.GoodsName }}</td>
+                <td class="td-table">{{ item.Specification }}</td>
+                <td class="td-table">{{ item.GoodsType  }}</td>
+              
+                <td class="td-table">
+                    <button mat-mini-fab [matTooltip]="'View'" (click)="editGoods(item.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab [matTooltip]="'Delete'" (click)="deleteGoods(item.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </app-sam-w-table>
+    </div>
+</div>

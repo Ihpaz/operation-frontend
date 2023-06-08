@@ -20,10 +20,15 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatSelectModule} from '@angular/material/select';
 import { FeatureAppComponent } from 'app/feature-app/feature-app.component';
 import { OutletComponent } from 'app/outlet/outlet.component';
-import { DistrictModalComponent, OutletModalComponent } from 'app/outlet/modal/outlet-modal.component';
+import { DistrictModalComponent, EmpModalComponent, OutletModalComponent } from 'app/outlet/modal/outlet-modal.component';
 import { SamWTableComponent } from 'app/components/widgets/sam-w-table/sam-w-table.component';
 import { SamWDropdownComponent } from 'app/components/widgets/sam-w-dropdown/sam-w-dropdown.component';
 import { MaterialModule } from 'app/modules/material.module';
+import { AlertComponent } from 'app/components/widgets/alert/alert.component';
+import { GoodsModalComponent } from 'app/goods/modal/goods-modal.component';
+import { GoodsComponent } from 'app/goods/goods.component';
+import { OutletGoodsComponent } from 'app/outlet-goods/outlet-goods.component';
+import { GoodsAddModalComponent, ListGoodsModalComponent, OutletGoodsModalComponent } from 'app/outlet-goods/modal/outlet-goods-modal.component';
 
 @NgModule({
   imports: [
@@ -57,6 +62,14 @@ import { MaterialModule } from 'app/modules/material.module';
     DistrictModalComponent,
     SamWTableComponent,
     SamWDropdownComponent,
+    AlertComponent,
+    EmpModalComponent,
+    OutletGoodsComponent,
+    GoodsModalComponent,
+    GoodsComponent,
+    ListGoodsModalComponent,
+    OutletGoodsModalComponent,
+    GoodsAddModalComponent
     
   ]
 })

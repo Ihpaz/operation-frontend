@@ -1,0 +1,34 @@
+.main-alert {
+    .title {
+        margin-bottom: 20px;
+    }
+
+    .btn-action {
+        margin-top: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        .btn-yes {
+            background-color: var(--sa-primary);
+            color: #fff;
+            margin-left: 10px;
+        }
+    }
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    color: var(--sa-primary) !important;
+}
+
+::ng-deep .mat-focused .mat-label {
+    color: var(--sa-primary) !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: var(--sa-primary) !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: var(--sa-primary) !important;
+}

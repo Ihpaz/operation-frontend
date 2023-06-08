@@ -11,6 +11,8 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { LoginComponent } from 'app/login/login.component';
 import { FeatureAppComponent } from 'app/feature-app/feature-app.component';
 import { OutletComponent } from 'app/outlet/outlet.component';
+import { GoodsComponent } from 'app/goods/goods.component';
+import { OutletGoodsComponent } from 'app/outlet-goods/outlet-goods.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -57,7 +59,9 @@ export const AdminLayoutRoutes: Routes = [
     // }
     { path: 'login',      component: LoginComponent },
     { path: 'dashboard',      component: FeatureAppComponent },
-    { path: 'outlet',      component: OutletComponent },
+    { path: 'outlet',         component: OutletComponent },
+    { path: 'outlet-asset',   component: OutletGoodsComponent },
+    { path: 'goods',          component: GoodsComponent },
     { path: 'user-profile',   component: UserProfileComponent },
     { path: 'table-list',     component: TableListComponent },
     { path: 'typography',     component: TypographyComponent },

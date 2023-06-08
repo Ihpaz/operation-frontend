@@ -1,0 +1,47 @@
+<div class="outlet-modal">
+    <h3>Outlet Asset</h3>
+    <div class="modal-wrapper-area">
+        <div class="form-area">
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Goods Name</mat-label>
+                <input matInput [placeholder]="'Goods Name'" [(ngModel)]="modelData.GoodsName">
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                <mat-label>Goods Type</mat-label>
+                <mat-select [(ngModel)]="modelData.GoodsType" >
+                   
+                    <mat-option  [value]="'ASSET'">
+                        ASSET
+                    </mat-option>
+                    <mat-option  [value]="'INVENTORY'">
+                        INVENTORY
+                    </mat-option>
+
+                </mat-select>
+            </mat-form-field>
+          
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Specification</mat-label>
+                <textarea matInput rows="5" [placeholder]="'Specification'" [(ngModel)]="modelData.Specification"></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 25%;">
+                <mat-label>Qty</mat-label>
+                <input matInput type="number" [placeholder]="'Code Outlet'" [(ngModel)]="modelData.Qty" >
+            </mat-form-field>
+
+            <div class="btn-area">
+                <button mat-stroked-button (click)="doCancel()" style="margin-right: 10px;"
+                    [disabled]="onRequest">
+                    Cancel
+                </button>
+                <button mat-raised-button (click)="doAdd()" [disabled]="onRequest">
+                    Add
+                    <mat-spinner diameter="25" *ngIf="onRequest"></mat-spinner>
+                </button>
+                
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,32 @@
+<h2>{{ title }}</h2>
+<div class="main-alert">
+    <!-- <label class="title" *ngIf="!withRemark">{{ message }}</label> -->
+    <div class="title">
+        {{ message }}
+    </div>
+    <div class="input-remark" *ngIf="withInputText">
+        <mat-form-field appearance="fill" style="width: 100%;">
+            <mat-label>{{ inputTextLabel }}</mat-label>
+            <ng-container *ngIf="inputType == 'textarea'">
+                <textarea matInput [(ngModel)]="inputData"></textarea>
+            </ng-container>
+            <ng-container *ngIf="inputType != 'textarea'">
+                <input [type]="inputType" matInput [(ngModel)]="inputData">
+            </ng-container>
+        </mat-form-field>
+        <h5 class="tappable" *ngIf="showForgotPasswordLink" (click)="doForgotPassword()">Forgot Password?</h5>
+    </div>
+    <div class="btn-action" *ngIf="!justMessage">
+        <button mat-raised-button (click)="doAction(false)">
+            Cancel
+        </button>
+        <button mat-raised-button class="btn-yes" (click)="doAction(true)">
+            Yes
+        </button>
+    </div>
+    <div class="btn-action" *ngIf="justMessage">
+        <button mat-raised-button class="btn-yes" (click)="doAction(false)">
+            Ok
+        </button>
+    </div>
+</div>

@@ -11,6 +11,7 @@ import { LoaderComponent } from 'app/components/loader/loader.component';
 
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'environments/environment';
+import { AlertComponent } from 'app/components/widgets/alert/alert.component';
 
 @Injectable({
     providedIn: 'root'
@@ -57,7 +58,7 @@ export class GlobalService {
     // }
 
     async runRequest(
-        method: 'GET' | 'POST' | 'PUT' | 'DELETE',
+        method: 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH',
         path: string,
         parameter?: { key: string, value: any }[],
         body?: { key: string, value: any }[],
@@ -66,12 +67,12 @@ export class GlobalService {
             await this.showLoading();
            
             let baseURL = environment.apiBaseURL;
-            if (environment.buildMode === 'mobile') {
-                const selectedCompany = await this.getStorage('selectedCompany');
-                baseURL = selectedCompany.api;
-            }
+          
+            console.log('0')
+            this.setStorage('token','test');
 
             const token = await this.getStorage('token');
+            console.log('1')
             const newBody: { key: string, value: any }[] = body && body.length ? body : [];
            
             const iRequest: IRequest = {
@@ -81,6 +82,8 @@ export class GlobalService {
                 body: newBody,
                 token: token,
             };
+
+            console.log(iRequest,'ireq')
 
             const req = await this._requestService.runRequest(iRequest);
 
@@ -100,10 +103,7 @@ export class GlobalService {
     async runRequestUpload(pathUpload: string, file: any) {
         try {
             let baseURL = environment.apiBaseURL;
-            if (environment.buildMode === 'mobile') {
-                const selectedCompany = await this.getStorage('selectedCompany');
-                baseURL = selectedCompany.api;
-            }
+           
             const token = await this.getStorage('token');
             const req = this._requestService.runRequestUpload(
                 `${baseURL}general/upload`,
@@ -203,14 +203,16 @@ export class GlobalService {
 
     async setStorage(key: string, value: any) {
         try {
-            const localData = await localStorage.get({ key: this.keyStorage });
-            const localDataValue = localData.value ? JSON.parse(localData.value) : {};
-            localDataValue[key] = value;
+            // const localData = await localStorage.getItem(key);
+            // const localDataValue = localData.valueOf ? JSON.parse(localData.valueOf) : {};
+            // localDataValue[key] = value;
 
-            await localStorage.set({
-                key: this.keyStorage,
-                value: JSON.stringify(localDataValue),
-            });
+            // await localStorage.set({
+            //     key: this.keyStorage,
+            //     value: JSON.stringify(localDataValue),
+            // });
+
+            localStorage.setItem(key,value);
 
             return true;
         } catch (error) {
@@ -222,9 +224,10 @@ export class GlobalService {
     async getStorage(key: string) {
         try {
             
-            const localData = await localStorage.get({ key: this.keyStorage }),
-                localDataValue = localData.value ? JSON.parse(localData.value) : {},
-                data = localDataValue.hasOwnProperty(key) ? localDataValue[key] : null;
+            const data= localStorage.getItem(key)
+            // const localData = await localStorage.get({ key: this.keyStorage }),
+            //     localDataValue = localData.value ? JSON.parse(localData.value) : {},
+            //     data = localDataValue.hasOwnProperty(key) ? localDataValue[key] : null;
 
             return data;
         } catch (error) {
@@ -280,6 +283,41 @@ export class GlobalService {
             disableClose: true,
             autoFocus: false,
             data: {},
+        });
+    }
+
+    async showAlert(
+        message: string,
+        withInputText: boolean = false,
+        inputTextName: string = '',
+        inputTextLabel: string = '',
+        inputType: string = '',
+        width: string = '350px',
+        justMessage: boolean = false,
+        title: string = 'Notification',
+        showForgotPasswordLink: boolean = false,
+    ): Promise<any> {
+        return new Promise((resolve) => {
+            const autoFocus = withInputText ? true : false;
+            const dialogRef = this._dialog.open(AlertComponent, {
+                width: width,
+                disableClose: true,
+                autoFocus: autoFocus,
+                data: {
+                    message: message,
+                    withInputText: withInputText,
+                    inputTextName: inputTextName,
+                    inputTextLabel: inputTextLabel,
+                    inputType: inputType,
+                    justMessage: justMessage,
+                    title: title,
+                    showForgotPasswordLink: showForgotPasswordLink,
+                },
+            });
+
+            dialogRef.afterClosed().subscribe(result => {
+                resolve(result);
+            });
         });
     }
 

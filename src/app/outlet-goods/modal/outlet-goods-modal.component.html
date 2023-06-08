@@ -1,0 +1,176 @@
+
+    <h3 mat-dialog-title>Outlet Goods</h3>
+    <mat-dialog-content>
+          
+   
+
+        <div class="form-area">
+
+            <div style="width: 100%;display: flex;justify-content: space-between;">
+                <mat-form-field appearance="fill" style="width: 25%;">
+                    <mat-label>Code Outlet</mat-label>
+                    <input matInput [placeholder]="'Code Outlet'" [(ngModel)]="modelData.CodeOutlet" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="fill" style="width: 70%;">
+                    <mat-label>Outlet Name</mat-label>
+                    <input matInput [placeholder]="'Outlet Name'" [(ngModel)]="modelData.OutletName" readonly>
+                </mat-form-field>
+            </div>
+          
+            
+        
+            <div style="width: 100%;">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>District Area</mat-label>
+                    <input matInput [(ngModel)]="modelData.DistrictArea" readonly>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                <mat-label>Outlet Type</mat-label>
+                <mat-select [(ngModel)]="modelData.Ownership" disabled="true">
+                   
+                    <mat-option  [value]="'COMPANY'">
+                       COMPANY
+                    </mat-option>
+                    <mat-option  [value]="'KEMITRAAN'">
+                        KEMITRAAN
+                    </mat-option>
+
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                <mat-label>Outlet Status</mat-label>
+                <mat-select [(ngModel)]="modelData.OutletStatus" disabled="true">
+                   
+                    <mat-option  [value]="'OPEN'">
+                       OPEN
+                    </mat-option>
+                    <mat-option  [value]="'ON PROGRESS'">
+                        ON PROGRESS
+                    </mat-option>
+                    <mat-option  [value]="'CLOSED'">
+                        CLOSED
+                     </mat-option>
+                    
+                </mat-select>
+            </mat-form-field>
+
+           
+           
+            
+        
+            <mat-tab-group>
+                <mat-tab label="List Asset"> 
+                    <div class="filter-area">
+                        <div class="input-area">
+                            <input id="fileInput"   hidden type="file" name="file"  (change)="fileChange($event.target.files)" [accept]="acceptExt">
+                            <mat-form-field appearance="fill" style="width: 100%;" *ngIf="!Attachment" >
+                                <mat-label>attachment</mat-label>
+                                <input matInput readonly >
+                                <mat-icon class="tappable" *ngIf="(!Attachment)" (click)="attachFile()"   matSuffix >attach_file</mat-icon>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" style="width: 100%;" *ngIf="Attachment">
+                                <mat-label class="tappable">{{ Attachment }}</mat-label>
+                                <input matInput readonly required>
+                                <mat-icon class="tappable"  (click)="removeAttachment($event)"  matSuffix *ngIf="Attachment">cancel</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="btn-area">
+                            <button mat-mini-fab [matTooltip]="'Upload Template'" (click)="addAsset()" >
+                                <mat-icon>upload</mat-icon>
+                            </button>
+                            <button mat-mini-fab [matTooltip]="'Download Template'" (click)="exportTemplateAsset()" >
+                                <mat-icon>download</mat-icon>
+                            </button>
+                            <button mat-mini-fab [matTooltip]="'Add'" (click)="addAsset()" >
+                                    <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div> 
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Code Asset</th>
+                                    <th>Goods Name</th>
+                                    <th>Specification</th>
+                                   
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tappable" *ngFor="let val of modelData.AssetList;let i = index">
+                                    <td>{{ val.CodeAsset }}</td>
+                                    <td>{{ val.AssetName }}</td>
+                                    <td>
+                                        <mat-icon class="tappable" (click)="deleteAsset(val.CodeAsset)">delete</mat-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </mat-tab>
+                <mat-tab label="List Inventory">
+                    <div class="filter-area">
+                        <div class="input-area">
+                            <input id="fileInput"   hidden type="file" name="file"  (change)="fileChange($event.target.files)" [accept]="acceptExt">
+                            <mat-form-field appearance="fill" style="width: 100%;" *ngIf="!Attachment" >
+                                <mat-label>attachment</mat-label>
+                                <input matInput readonly >
+                                <mat-icon class="tappable" *ngIf="(!Attachment)" (click)="attachFile()"   matSuffix >attach_file</mat-icon>
+                            </mat-form-field>
+                            <mat-form-field appearance="fill" style="width: 100%;" *ngIf="Attachment">
+                                <mat-label class="tappable">{{ Attachment }}</mat-label>
+                                <input matInput readonly required>
+                                <mat-icon class="tappable"  (click)="removeAttachment($event)"  matSuffix *ngIf="Attachment">cancel</mat-icon>
+                            </mat-form-field>
+                        </div>
+                        <div class="btn-area">
+                            <button mat-mini-fab [matTooltip]="'Upload Template'" (click)="addAsset()" >
+                                <mat-icon>upload</mat-icon>
+                            </button>
+                            <button mat-mini-fab [matTooltip]="'Download Template'" (click)="exportTemplateInventory()" >
+                                <mat-icon>download</mat-icon>
+                            </button>
+                            <button mat-mini-fab [matTooltip]="'Add'" (click)="addAsset()" >
+                                    <mat-icon>add</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Goods Name</th>
+                                    <th>Specification</th>
+                                    <th>Qty</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tappable" *ngFor="let val of modelData.AssetList;let i = index">
+                                    <td>{{ val.CodeAsset }}</td>
+                                    <td>{{ val.AssetName }}</td>
+                                    <td>{{ val.Qty }}</td>
+                                    <td>
+                                        <mat-icon class="tappable" (click)="deleteAsset(val.CodeAsset)">delete</mat-icon>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+          
+        </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+            <button mat-stroked-button (click)="doCancel()" style="margin-right: 10px;"
+                [disabled]="onRequest">Cancel</button>
+            <button mat-raised-button (click)="doSave()" [disabled]="onRequest">
+                Save
+                <mat-spinner diameter="25" *ngIf="onRequest"></mat-spinner>
+            </button>
+    </mat-dialog-actions>
