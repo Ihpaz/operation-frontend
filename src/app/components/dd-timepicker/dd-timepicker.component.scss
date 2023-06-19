@@ -1,0 +1,50 @@
+.dd-timepicker {
+    display: flex;
+}
+
+.btn-area {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    .mat-raised-button {
+        background-color: var(--sa-primary);
+        color: #fff;
+    }
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    color: var(--sa-primary) !important;
+}
+
+::ng-deep .mat-focused .mat-label {
+    color: var(--sa-primary) !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: var(--sa-primary) !important;
+    bottom: 0 !important;
+    // display: none;
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: var(--sa-primary) !important;
+}
+
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #f4f5f8 !important;
+    border-bottom: 1px solid #7a7a7a;
+}
+
+::ng-deep.mat-form-field-appearance-fill.mat-form-field-disabled .mat-form-field-flex {
+    background-color: rgba(0,0,0,0.06);
+}
+
+::ng-deep .mat-form-field-wrapper {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+::ng-deep .mat-form-field-appearance-fill .mat-select-arrow-wrapper {
+    transform: inherit;
+}

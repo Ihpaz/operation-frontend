@@ -33,3 +33,16 @@
   position: absolute;
   width: 260px;
 }
+
+
+.content.useBackgroundHeader {
+  /* background: #fff; */
+  /* -webkit-box-shadow: 0 3px 20px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 20px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 10px; */
+
+  position: fixed;
+  z-index: 999;
+  width: -webkit-fill-available;
+  margin-right: 15px;
+}

@@ -28,7 +28,18 @@ import { AlertComponent } from 'app/components/widgets/alert/alert.component';
 import { GoodsModalComponent } from 'app/goods/modal/goods-modal.component';
 import { GoodsComponent } from 'app/goods/goods.component';
 import { OutletGoodsComponent } from 'app/outlet-goods/outlet-goods.component';
-import { GoodsAddModalComponent, ListGoodsModalComponent, OutletGoodsModalComponent } from 'app/outlet-goods/modal/outlet-goods-modal.component';
+import { AssetAddModalComponent , InventoryAddModalComponent, ListAssetModalComponent, ListInventoryModalComponent, OutletGoodsModalComponent } from 'app/outlet-goods/modal/outlet-goods-modal.component';
+import { NavbarComponent } from 'app/components/navbar/navbar.component';
+import { UserRoleComponent } from 'app/userrole/userrole.component';
+import { FormComponent } from 'app/form/form.component';
+import { FormDetailComponent } from 'app/form/form-detail/form-detail.component';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
+import { VocComponent } from 'app/voc/voc.component';
+import { SaWTableComponent } from 'app/components/widgets/sa-w-table/sa-w-table.component';
+import { VocNegatifComponent } from 'app/voc-negatif/voc-negatif.component';
+import { VocModalComponent, VocSubCategoryModalComponent } from 'app/voc-negatif/modal/voc-modal.component';
+import { NgChartsModule } from 'ng2-charts';
+import { VocDashboardComponent } from 'app/voc/voc-dashboard/sam-dashboard/voc-dashboard.component';
 
 @NgModule({
   imports: [
@@ -44,8 +55,9 @@ import { GoodsAddModalComponent, ListGoodsModalComponent, OutletGoodsModalCompon
     MatTooltipModule,
     MatInputModule,
     MatIconModule,
-    MaterialModule
-    
+    MaterialModule,
+    NgxMatTimepickerModule,
+    NgChartsModule
   ],
   declarations: [
     DashboardComponent,
@@ -67,9 +79,20 @@ import { GoodsAddModalComponent, ListGoodsModalComponent, OutletGoodsModalCompon
     OutletGoodsComponent,
     GoodsModalComponent,
     GoodsComponent,
-    ListGoodsModalComponent,
+    ListInventoryModalComponent,
+    ListAssetModalComponent,
     OutletGoodsModalComponent,
-    GoodsAddModalComponent
+    AssetAddModalComponent,
+    InventoryAddModalComponent,
+    UserRoleComponent,
+    FormComponent,
+    FormDetailComponent,
+    VocComponent,
+    SaWTableComponent,
+    VocNegatifComponent,
+    VocModalComponent,
+    VocSubCategoryModalComponent,
+    VocDashboardComponent
     
   ]
 })

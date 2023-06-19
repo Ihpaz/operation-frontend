@@ -1,0 +1,185 @@
+<ng-container *ngIf="IsShow">
+    <ng-container *ngIf="!isSmallScreen">
+        <div *ngIf="useFilterFields" class="filter-area">
+            <mat-accordion>
+                <mat-expansion-panel class="mat-elevation-z0" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Filter
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="table-filter-container">
+                        <ng-container *ngFor="let field of schema.fields">
+                            <ng-container *ngIf="field.filterOptions.canFilter">
+                                <div class="table-filter-item" *ngIf="field.filterOptions.filterType == 'text'">
+                                    <!-- <input type="text" [(ngModel)]="modelFilter[field.name]" (ngModelChange)="filterTextOnSearch()" [placeholder]="field.title"> -->
+                                    <mat-form-field appearance="fill" style="width: 85%;">
+                                        <mat-label>{{ field.title }}</mat-label>
+                                        <input matInput [(ngModel)]="modelFilter[field.name]" (ngModelChange)="filterTextOnSearch()">
+                                    </mat-form-field>
+                                </div>
+                                <div class="table-filter-item" *ngIf="field.filterOptions.filterType == 'select'">
+                                    <mat-form-field appearance="fill" style="width: 85%;">
+                                        <mat-label>{{ field.title }}</mat-label>
+                                        <mat-select [(ngModel)]="modelFilter[field.name]" (ngModelChange)="filterTextOnSearch()">
+                                            <mat-option *ngFor="let dd of dataFilterSelect['filterdata_' + field.name]" [value]="dd[field.filterOptions.filterSelect.field.value]">
+                                                {{ dd[field.filterOptions.filterSelect.field.label] }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="table-filter-item" *ngIf="field.filterOptions.filterType == 'date'">
+                                    <!-- <mat-form-field appearance="fill" style="width: 85%;">
+                                        <mat-label>{{ field.title }}</mat-label>
+                                        <mat-select [(ngModel)]="modelFilter[field.name]" (ngModelChange)="filterTextOnSearch()">
+                                            <mat-option *ngFor="let dd of dataFilterSelect['filterdata_' + field.name]" [value]="dd[field.filterOptions.filterSelect.field.value]">
+                                                {{ dd[field.filterOptions.filterSelect.field.label] }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field> -->
+
+                                    <mat-form-field appearance="fill" style="width: 85%;">
+                                        <mat-label>{{ field.title }}</mat-label>
+                                        <input matInput  [matDatepicker]="DateReportPicker" readonly [(ngModel)]="modelFilter[field.name]" (ngModelChange)="filterTextOnSearch()">
+                                        <mat-datepicker-toggle  matSuffix [for]="DateReportPicker"></mat-datepicker-toggle>
+                                        <mat-datepicker #DateReportPicker disabled="false"></mat-datepicker>
+                                      </mat-form-field>
+                                </div>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+        <div class="table-container">
+            <div class="table-area" [ngStyle]="{'height': schema.height}">
+                <table mat-table [ngStyle]="{'width': schema.width}" [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+                    <ng-container>
+                        <ng-container [matColumnDef]="'checkboxActionArea'" sticky>
+                            <th mat-header-cell *matHeaderCellDef style="text-align: center">
+                                <mat-checkbox [(ngModel)]="checkedAll" (ngModelChange)="checkedAllOnChange()"></mat-checkbox>
+                            </th>
+                            <td mat-cell *matCellDef="let row;let odd = odd" class="bg-color" [class.useBg]="odd" [ngStyle]="{'text-align': 'center' }">
+                                <ng-container *ngIf="!isNoData && checkboxCheckShowHideCondition(row)">
+                                    <mat-checkbox [(ngModel)]="row['isChecked_fn']" (ngModelChange)="rowCheckedOnChange()"></mat-checkbox>
+                                </ng-container>
+                            </td>
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container>
+                        <ng-container [matColumnDef]="'actionArea'" [stickyEnd]="actionIsSticky">
+                            <th mat-header-cell *matHeaderCellDef style="text-align: center" colspan="schema.fieldActions.length">Action</th>
+                        
+                                <td mat-cell *matCellDef="let row;let odd = odd" class="bg-color" [class.useBg]="odd" [ngStyle]="{'text-align': 'center', 'width': schema.fieldActions[0].width }">
+                                <ng-container *ngFor="let fieldAction of schema.fieldActions">
+                                  
+                                    <ng-container *ngIf="checkShowHideAction(fieldAction.action.showHideCondition, row)">
+                                        <button mat-mini-fab [matTooltip]="fieldAction.title" *ngIf="!isNoData" (click)="doAction(fieldAction.action, row)">
+                                            <mat-icon>{{ fieldAction.icon }}</mat-icon>
+                                        </button>
+                                    </ng-container>
+                                </ng-container>
+                                </td>
+                        
+                        </ng-container>
+                    </ng-container>
+
+                    <ng-container *ngFor="let field of schema.fields">
+                        
+                      
+
+                        <ng-container [matColumnDef]="field.name" [sticky]="field.isSticky" *ngIf="!field.hasOwnProperty('custom')">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header [disabled]="!field.canOrder" [ngStyle]="{'width': field.width ? field.width + 'px' : 'none' }">
+                                {{ field.title  }}
+                            </th>
+                            
+                            <td mat-cell
+                                *matCellDef="let element;let odd = odd"
+                                class="bg-color"
+                                [class.useBg]="odd"
+                                [ngStyle]="(field.hasOwnProperty('styleOptionsName')
+                                    && element.hasOwnProperty(field.styleOptionsName)) ?
+                                        element[field.styleOptionsName] :
+                                        (element.hasOwnProperty('styleOptions')) ?
+                                        element.styleOptions : {}">
+                                {{ element[field.name] }}
+                            </td>
+                           
+                        </ng-container>
+
+                     
+                      
+                    </ng-container>
+
+                    
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky:true"></tr>
+                   
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [hidden]="isNoData"></tr>
+                  
+                </table>
+                <mat-card *ngIf="isNoData && !showSpinner" [ngStyle]="{'width': schema.width, 'overflow': 'auto'}" style="display: flex; justify-content: center; align-items: center">
+                    <label>{{ 'No Data Available' | translate }}</label>
+                </mat-card>
+                <mat-card *ngIf="showSpinner" style="display: flex; justify-content: center; align-items: center" [ngStyle]="{'width': schema.width, 'overflow': 'auto'}">
+                    <mat-spinner></mat-spinner>
+                </mat-card>
+            </div>
+            <mat-paginator #paginator *ngIf="schema.pageSize.length > 2" [length]="totalData" [pageSizeOptions]="schema.pageSize" [showFirstLastButtons]="true" (page)="eventPaginator($event)"></mat-paginator>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="isSmallScreen && forMobile">
+        <mat-list *ngIf="isNoData && !showSpinner">
+            <mat-list-item class="bg-color" [class.useBg]="true" [ngStyle]="{ 'background-color': schema.forMobile.hasOwnProperty('withBackground') && schema.forMobile.withBackground ? '#fff' : '#f5f5f5' }">
+                <div style="display: flex; width: 100%; justify-content: center;">
+                    <div class="">
+                        <label matLine>{{ 'No Data Available' | translate }}</label>
+                    </div>
+                </div>
+                <mat-divider></mat-divider>
+            </mat-list-item>
+        </mat-list>
+        <cdk-virtual-scroll-viewport #scroller itemSize="35" class="scroller-area" [ngStyle]="{'height': schema.forMobile.height}" [hidden]="isNoData && !showSpinner">
+            <mat-list [ngStyle]="{ 'background-color': schema.forMobile.hasOwnProperty('withBackground') && schema.forMobile.withBackground ? '#fff' : '' }">
+                <ng-container *cdkVirtualFor="let item of dataSource;let odd = odd;let i = index">
+                    <mat-list-item class="bg-color" [class.useBg]="odd" (click)="itemOnClick(item, i)">
+                        <div style="display: flex; width: 100%; justify-content: space-between;">
+                            <div class="small-view">
+                                <div class="left">
+                                    <label matLine class="title">{{ item[forMobile.leftField.title] }}</label>
+                                    <label matLine class="subtitle">{{ item[forMobile.leftField.subtitle] }}</label>
+                                    <label matLine class="mini-subtitle">{{ item[forMobile.leftField.miniSubtitle] }}</label>
+                                </div>
+                            </div>
+                            <div class="small-view">
+                                <div class="right">
+                                    <label matLine class="title">{{ item[forMobile.rightField.title] }}</label>
+                                    <label matLine class="subtitle">{{ item[forMobile.rightField.subtitle] }}</label>
+                                    <label matLine class="mini-subtitle">{{ item[forMobile.rightField.miniSubtitle] }}</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                    <mat-list-item *ngIf="schema.forMobile.useAction && item.hasOwnProperty('isExpandItemMobile') && item.isExpandItemMobile">
+                        <div style="display: flex;justify-content: center;width: 100%;">
+                            <ng-container *ngFor="let act of schema.forMobile.actions">
+                                <ng-container *ngIf="checkShowHideAction(act.action.showHideCondition, item)">
+                                    <button mat-mini-fab [matTooltip]="act.title" (click)="doAction(act.action, item)">
+                                        <mat-icon>{{ act.icon }}</mat-icon>
+                                    </button>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </mat-list-item>
+                </ng-container>
+                <div class="spinner-item" *ngIf="showSpinner">
+                    <mat-progress-spinner [mode]="'indeterminate'" [diameter]="50"></mat-progress-spinner>
+                </div>
+            </mat-list>
+        </cdk-virtual-scroll-viewport>
+    </ng-container>
+</ng-container>

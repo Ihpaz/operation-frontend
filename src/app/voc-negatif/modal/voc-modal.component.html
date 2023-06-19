@@ -1,0 +1,58 @@
+<div class="outlet-modal">
+    <h3>Complaint</h3>
+
+    <div class="modal-wrapper-area">
+        <div class="form-area">
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Outlet Name</mat-label>
+                <input matInput [placeholder]="'Outlet Name'" [(ngModel)]="modelData.OutletName" readonly>
+            </mat-form-field>
+            
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Comment</mat-label>
+                <textarea matInput rows="5" [placeholder]="'Comment'" [(ngModel)]="modelData.Comment" readonly>
+                </textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" style="width: 100%;">
+                <mat-label>Source</mat-label>
+                <input matInput [placeholder]="'Source'" [(ngModel)]="modelData.Source" readonly>
+            </mat-form-field>
+
+           
+
+            <div style="width: 100%;">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Sub Category Complaint</mat-label>
+                    <input matInput [(ngModel)]="modelData.SubCategoryComplaint" readonly>
+                    <mat-icon class="tappable" (click)="openModalSubCategory()" matSuffix>search</mat-icon>
+                </mat-form-field>
+            </div>
+            
+            <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                <mat-label>Category Complaint</mat-label>
+                <mat-select [(ngModel)]="modelData.CategoryComplaint" >
+                   
+                    <mat-option [value]="">
+                        Reset 
+                    </mat-option>
+                    <mat-option  *ngFor="let val of listCategoryComplaint;let i = index" [value]="val">
+                        {{val}}
+                    </mat-option>
+
+                </mat-select>
+            </mat-form-field>
+          
+        
+            <div class="btn-area">
+                <button mat-stroked-button (click)="doCancel()" style="margin-right: 10px;"
+                    [disabled]="onRequest">Cancel</button>
+                <button mat-raised-button (click)="doSave()" [disabled]="onRequest">
+                    Save
+                    <mat-spinner diameter="25" *ngIf="onRequest"></mat-spinner>
+                </button>
+            </div>
+    
+        
+    </div>
+</div>

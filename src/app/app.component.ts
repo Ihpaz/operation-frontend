@@ -7,5 +7,8 @@ import { Component} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-
+  
+  ngOninit(){
+    console.log('App component')
+  }
 }

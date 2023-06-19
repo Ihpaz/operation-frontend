@@ -16,9 +16,7 @@
                     <input matInput [placeholder]="'Outlet Name'" [(ngModel)]="modelData.OutletName" readonly>
                 </mat-form-field>
             </div>
-          
-            
-        
+
             <div style="width: 100%;">
                 <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>District Area</mat-label>
@@ -78,7 +76,7 @@
                             </mat-form-field>
                         </div>
                         <div class="btn-area">
-                            <button mat-mini-fab [matTooltip]="'Upload Template'" (click)="addAsset()" >
+                            <button mat-mini-fab [matTooltip]="'Upload Template'" (click)="importTemplateAsset()" >
                                 <mat-icon>upload</mat-icon>
                             </button>
                             <button mat-mini-fab [matTooltip]="'Download Template'" (click)="exportTemplateAsset()" >
@@ -102,10 +100,11 @@
                             </thead>
                             <tbody>
                                 <tr class="tappable" *ngFor="let val of modelData.AssetList;let i = index">
-                                    <td>{{ val.CodeAsset }}</td>
-                                    <td>{{ val.AssetName }}</td>
+                                    <td>{{ val.AssetId }}</td>
+                                    <td>{{ val.GoodsName }}</td>
+                                    <td>{{ val.Specification }}</td>
                                     <td>
-                                        <mat-icon class="tappable" (click)="deleteAsset(val.CodeAsset)">delete</mat-icon>
+                                        <mat-icon class="tappable" (click)="deleteAsset(val.AssetId)">delete</mat-icon>
                                     </td>
                                 </tr>
                             </tbody>
@@ -115,26 +114,26 @@
                 <mat-tab label="List Inventory">
                     <div class="filter-area">
                         <div class="input-area">
-                            <input id="fileInput"   hidden type="file" name="file"  (change)="fileChange($event.target.files)" [accept]="acceptExt">
-                            <mat-form-field appearance="fill" style="width: 100%;" *ngIf="!Attachment" >
+                            <input id="fileInput"   hidden type="file" name="file"  (change)="fileChangeInv($event.target.files)" [accept]="acceptExt">
+                            <mat-form-field appearance="fill" style="width: 100%;" *ngIf="!AttachmentInv" >
                                 <mat-label>attachment</mat-label>
                                 <input matInput readonly >
-                                <mat-icon class="tappable" *ngIf="(!Attachment)" (click)="attachFile()"   matSuffix >attach_file</mat-icon>
+                                <mat-icon class="tappable" *ngIf="(!AttachmentInv)" (click)="attachFile()"   matSuffix >attach_file</mat-icon>
                             </mat-form-field>
-                            <mat-form-field appearance="fill" style="width: 100%;" *ngIf="Attachment">
-                                <mat-label class="tappable">{{ Attachment }}</mat-label>
+                            <mat-form-field appearance="fill" style="width: 100%;" *ngIf="AttachmentInv">
+                                <mat-label class="tappable">{{ AttachmentInv }}</mat-label>
                                 <input matInput readonly required>
-                                <mat-icon class="tappable"  (click)="removeAttachment($event)"  matSuffix *ngIf="Attachment">cancel</mat-icon>
+                                <mat-icon class="tappable"  (click)="removeAttachmentInv($event)"  matSuffix *ngIf="AttachmentInv">cancel</mat-icon>
                             </mat-form-field>
                         </div>
                         <div class="btn-area">
-                            <button mat-mini-fab [matTooltip]="'Upload Template'" (click)="addAsset()" >
+                            <button mat-mini-fab [matTooltip]="'Upload Template'" (click)="importTemplateInventory()" >
                                 <mat-icon>upload</mat-icon>
                             </button>
                             <button mat-mini-fab [matTooltip]="'Download Template'" (click)="exportTemplateInventory()" >
                                 <mat-icon>download</mat-icon>
                             </button>
-                            <button mat-mini-fab [matTooltip]="'Add'" (click)="addAsset()" >
+                            <button mat-mini-fab [matTooltip]="'Add'" (click)="addInventory()" >
                                     <mat-icon>add</mat-icon>
                             </button>
                         </div>
@@ -150,12 +149,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="tappable" *ngFor="let val of modelData.AssetList;let i = index">
-                                    <td>{{ val.CodeAsset }}</td>
-                                    <td>{{ val.AssetName }}</td>
+                                <tr class="tappable" *ngFor="let val of modelData.InventoryList;let i = index">
+                                    <td>{{ val.GoodsName }}</td>
+                                    <td>{{ val.Specification }}</td>
                                     <td>{{ val.Qty }}</td>
                                     <td>
-                                        <mat-icon class="tappable" (click)="deleteAsset(val.CodeAsset)">delete</mat-icon>
+                                        <mat-icon class="tappable" (click)="deleteInv(val.GoodsName)">delete</mat-icon>
                                     </td>
                                 </tr>
                             </tbody>

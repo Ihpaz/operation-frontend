@@ -14,7 +14,7 @@ table {
     // display: block;
     overflow-x: auto;
     white-space: nowrap;
-    // word-wrap: break-word;
+    
 }
 
 thead th:first-child {
@@ -34,9 +34,9 @@ th {
 td,
 th {
     padding: 10px;
-    text-align: left;
+    text-align: center;
     z-index: 2;
-   
+    margin-right: 5px;
 }
 
 tr {
@@ -47,8 +47,10 @@ td {
     padding: 10px;
     min-width: 600px;
     text-overflow: ellipsis;
+ 
    
 }
+
 
 
 

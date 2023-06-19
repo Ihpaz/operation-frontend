@@ -10,6 +10,7 @@ import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.compon
 import { LoginComponent } from './login/login.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './modules/material.module';
+import { NgxMatTimepickerModule } from 'ngx-mat-timepicker';
 
 @NgModule({
   imports: [
@@ -22,8 +23,8 @@ import { MaterialModule } from './modules/material.module';
     AppRoutingModule,
     ToastrModule.forRoot(),
     HttpClientModule,
-    MaterialModule
-    
+    MaterialModule,
+    NgxMatTimepickerModule
   ],
   declarations: [
     AppComponent,

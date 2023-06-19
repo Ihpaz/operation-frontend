@@ -1,5 +1,5 @@
 <div class="dd-select">
-    <h3>Data Asset</h3>
+    <h3>Select Complaint Type</h3>
     <div class="search-area">
         <input type="text" [(ngModel)]="search" (ngModelChange)="onSearch()" [placeholder]="'Search'">
     </div>
@@ -7,15 +7,24 @@
         <table>
             <thead>
                 <tr>
-                    <th>Code Asset</th>
-                    <th>Asset Name</th>
+                    <th>Category</th>
+                    <th>SubCategory</th>
+                    <th>Code</th>
+                    <th>Remarks</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="tappable" *ngFor="let val of previewData;let i = index" (click)="onRowClick(i)">
-                    <td>{{ val.CodeAsset }}</td>
-                    <td>{{ val.NameAsset }}</td>
+                    <td>{{ val.Category }}</td>
+                    <td>{{ val.Title }}</td>
+                    <td>{{ val.Code }}</td>
+                    <td>
+                        <ng-container *ngFor="let dt of val.Problem">
+                            {{dt}} <br>
+                        </ng-container>
+                    </td>
+                  
                     <td>
                         <label>
                             <input type="radio" name="dataSelected" [value]="i" [checked]="val.checked"/>
@@ -31,9 +40,7 @@
     </mat-card>
     <div class="btn-area">
         <button mat-stroked-button (click)="doCancel()" style="margin-right: 10px;"
-                    [disabled]="onRequest">
-                    Cancel
-        </button>
+                    [disabled]="onRequest">Cancel</button>
         <button mat-raised-button (click)="doAction()">Ok</button>
     </div>
 </div>

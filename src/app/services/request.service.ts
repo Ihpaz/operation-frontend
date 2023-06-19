@@ -26,7 +26,7 @@ export class RequestService {
 
                 if (iRequest.token) {
                     options["headers"] = {
-                        Authorization:`Bearer ${iRequest.token}`,
+                        Authorization:`${iRequest.token}`,
                     };
                 }
 
@@ -63,7 +63,6 @@ export class RequestService {
                     );
                 }
 
-                console.log(resp,'response')
                 resolve(resp.data);
             } catch (error) {
                 console.log(error,'reqservice');

@@ -1,0 +1,54 @@
+
+
+
+<div class="title">
+    List Form Digital Checklist
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackground]="true">
+        <div class="filter-area">
+            <div class="input-area">
+                <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                    <mat-label>Tittle</mat-label>
+                    <input matInput [placeholder]="'Outlet Code'" [(ngModel)]="modelFilter.Tittle">
+                </mat-form-field>
+               
+            </div>
+            <div class="button-area">
+                <button mat-mini-fab [matTooltip]="'Search'" (click)="onFilter()" style="margin-right: 5px;">
+                    <mat-icon>search</mat-icon>
+                </button>
+                <button mat-mini-fab [matTooltip]="'Add'" (click)="goToDetail()">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <button mat-mini-fab [matTooltip]="'Download'" (click)="downloadExcel()">
+                    <mat-icon>download</mat-icon>
+                </button>
+            </div>
+        </div>
+        
+        <app-sam-w-table [schema]="tblSchema" [globalValue]="modelFilter" (onDataValue)="onDataValueHandler($event)">
+            <tr *ngFor="let item of datatable;let i=index">
+                <td class="td-table">{{ i+1 }}</td>
+                <td class="td-table">{{ item.Tittle }}</td>
+                <td class="td-table">{{ item.Remarks }}</td>
+                <td class="td-table">
+                    <mat-chip-list aria-label="Fish selection">
+                        <mat-chip class="chip-primary" *ngIf="item.IsActive==1" selected>Active</mat-chip>
+                        <mat-chip class="chip-warn" *ngIf="item.IsActive==0" selected>Non Active</mat-chip>
+                    </mat-chip-list>
+                </td>
+                <td class="td-table">{{ item.Address }}</td>
+                <td class="td-table">
+                    <button mat-mini-fab [matTooltip]="'View'" (click)="goToDetailWithId(item.id)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab [matTooltip]="'Delete'" (click)="deleteForm(item.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </app-sam-w-table>
+    </div>
+</div>

@@ -13,6 +13,12 @@ import { FeatureAppComponent } from 'app/feature-app/feature-app.component';
 import { OutletComponent } from 'app/outlet/outlet.component';
 import { GoodsComponent } from 'app/goods/goods.component';
 import { OutletGoodsComponent } from 'app/outlet-goods/outlet-goods.component';
+import { FormComponent } from 'app/form/form.component';
+import { FormDetailComponent } from 'app/form/form-detail/form-detail.component';
+import { Component } from '@angular/core';
+import { VocComponent } from 'app/voc/voc.component';
+import { VocNegatifComponent } from 'app/voc-negatif/voc-negatif.component';
+import { VocDashboardComponent } from 'app/voc/voc-dashboard/sam-dashboard/voc-dashboard.component';
 
 export const AdminLayoutRoutes: Routes = [
     // {
@@ -69,4 +75,9 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'maps',           component: MapsComponent },
     { path: 'notifications',  component: NotificationsComponent },
     { path: 'upgrade',        component: UpgradeComponent },
+    { path: 'form',           component: FormComponent},
+    { path: 'form/detail',    component: FormDetailComponent},
+    { path: 'voc',   component:VocComponent},
+    { path: 'voc-negatif',   component:VocNegatifComponent},
+    { path: 'voc-dashboard', component:VocDashboardComponent}
 ];

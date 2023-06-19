@@ -12,6 +12,7 @@ import { LoaderComponent } from 'app/components/loader/loader.component';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'environments/environment';
 import { AlertComponent } from 'app/components/widgets/alert/alert.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
     providedIn: 'root'
@@ -29,6 +30,7 @@ export class GlobalService {
         private _requestService: RequestService,
         private toastr: ToastrService,
         private _dialog: MatDialog,
+        private _snackBar: MatSnackBar
       
 
     ) {}
@@ -68,8 +70,7 @@ export class GlobalService {
            
             let baseURL = environment.apiBaseURL;
           
-            console.log('0')
-            this.setStorage('token','test');
+           
 
             const token = await this.getStorage('token');
             console.log('1')
@@ -89,9 +90,13 @@ export class GlobalService {
 
             return req;
         } catch (error) {
-            if (error.message.toLowerCase() === 'expired token') {
+            console.log(error,'error')
+            const arrError=['expired token','invalid token','required access token','required two verification otp','jwt malformed']
+            if (arrError.includes(error.message.toLowerCase())) {
+                this.showAlert(error.message)
+
                 this.clearStorage();
-                location.reload();
+                this.redirectPage('/login')
             } else {
                 throw new Error(error.message);
             }
@@ -106,16 +111,19 @@ export class GlobalService {
            
             const token = await this.getStorage('token');
             const req = this._requestService.runRequestUpload(
-                `${baseURL}general/upload`,
+                `${baseURL}Api/v1/general/upload`,
                 token,
                 pathUpload,
                 file,
             );
             return req;
         } catch (error) {
-            if (error.message.toLowerCase() === 'expired token') {
+            const arrError=['expired token','invalid token','required access token','required two verification otp','jwt malformed']
+            if (arrError.includes(error.message.toLowerCase())) {
+                this.showAlert(error.message)
+
                 this.clearStorage();
-                location.reload();
+                this.redirectPage('/login')
             } else {
                 throw new Error(error.message);
             }
@@ -146,7 +154,7 @@ export class GlobalService {
                 return false;
             }
             this.router.onSameUrlNavigation = 'reload';
-            this.router.navigate([`pages/${page}`], navigationExtras);
+            this.router.navigate([`${page}`], navigationExtras);
         } catch (error) {
             throw new Error(error.message);
         }
@@ -155,9 +163,15 @@ export class GlobalService {
     async showNotif(msg: string,colorOpt: string = 'success',duration:number=2000,positionOpt:any ='middle') {
 
         if(colorOpt == 'success'){
-            this.toastr.success(msg, 'Ok');
+            this._snackBar.open(msg, 'ok',{
+                horizontalPosition:'center',
+                verticalPosition:'top'
+            });
         }else if(colorOpt == 'error'){
-            this.toastr.error(msg, 'Ok');
+            this._snackBar.open(msg, 'ok',{
+                horizontalPosition:'center',
+                verticalPosition:'top'
+            });
         }
        
         // const toast = await this.toastController.create({
@@ -238,10 +252,7 @@ export class GlobalService {
     async clearStorage() {
         try {
            
-            await localStorage.set({
-                key: this.keyStorage,
-                value: JSON.stringify({}),
-            });
+            await localStorage.clear()
 
             return true;
         } catch (error) {
@@ -319,6 +330,11 @@ export class GlobalService {
                 resolve(result);
             });
         });
+    }
+
+    async Logout(){
+        await  this.clearStorage();
+        this.redirectPage('/login')
     }
 
 }

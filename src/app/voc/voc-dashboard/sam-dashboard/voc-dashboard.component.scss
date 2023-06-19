@@ -1,0 +1,131 @@
+.main-page{
+    margin-top: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.title {
+    padding: 20px;
+    font-size: 22px;
+    color: var(--sa-primary);
+}
+
+.ttwo-main {
+    display: flex;
+    justify-content: space-between;
+  
+}
+
+.ttwo-main.useBackground {
+    background: #fff;
+    -webkit-box-shadow: 0 3px 20px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 20px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    min-height: 500px;
+}
+
+.ttwo-main-small.useBackground {
+    background: #fff;
+    -webkit-box-shadow: 0 3px 20px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 20px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.content.useBackground {
+    margin: 10px 0;
+    background: #fff;
+    -webkit-box-shadow: 0 3px 20px 2px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 3px 20px 2px rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.right.content.useBackground {
+    margin-left: 5px;
+}
+
+.left.content.useBackground {
+    margin-right: 5px;
+}
+
+.inputheader{
+    padding: 5px;
+}
+
+.main-card {
+    width: 100%;
+    margin: 25px 0;
+    min-height: 500px;
+}
+  
+.content-card{
+    width: 100%;
+    // height: 400px;
+    min-height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-card{
+    height: 50px;
+}
+
+.mat-card-image:first-child {
+    margin-top: 0;
+}
+
+
+.sa-w-button {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-items: center;
+
+    button {
+        margin: 0 3px;
+    }
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    color: var(--sa-primary) !important;
+}
+
+::ng-deep .mat-focused .mat-label {
+    color: var(--sa-primary) !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: var(--sa-primary) !important;
+    bottom: 0 !important;
+    // display: none;
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: var(--sa-primary) !important;
+}
+
+::ng-deep.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: #f4f5f8 !important;
+    border-bottom: 1px solid #7a7a7a;
+}
+
+::ng-deep.mat-form-field-appearance-fill.mat-form-field-disabled .mat-form-field-flex {
+    background-color: rgba(0,0,0,0.06);
+}
+
+::ng-deep .mat-form-field-wrapper {
+    width: 100%;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+::ng-deep.mat-calendar-body-selected {
+    background-color: var(--sa-primary) !important;
+    color: #fff;
+}
+
+::ng-deep.mat-datepicker-toggle-active {
+    color: var(--sa-primary) !important;
+}

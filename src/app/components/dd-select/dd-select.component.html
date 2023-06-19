@@ -1,0 +1,33 @@
+<!-- <div class="dd-select">
+    <h3>{{ title }}</h3>
+    <div class="search-area">
+        <input type="text" [(ngModel)]="search" (ngModelChange)="onSearch()" [placeholder]="'Search'">
+    </div>
+    <div class="table-wrapper" *ngIf="!showSpinner">
+        <table>
+            <thead>
+                <tr>
+                    <th *ngFor="let item of data.fields">{{ item.title }}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tappable" *ngFor="let val of previewData;let i = index" (click)="onRowClick(i)">
+                    <td  style="max-width: 250px;word-break: break-all;" *ngFor="let item of data.fields">{{ val[item.key] }}</td>
+                    <td>
+                        <label>
+                            <input type="radio" name="dataSelected" [value]="i" [checked]="val.checked"/>
+                            <span></span>
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <mat-card *ngIf="showSpinner" style="display: flex; justify-content: center; align-items: center">
+        <mat-spinner></mat-spinner>
+    </mat-card>
+    <div class="btn-area">
+        <button mat-raised-button (click)="doAction()">Ok</button>
+    </div>
+</div> -->

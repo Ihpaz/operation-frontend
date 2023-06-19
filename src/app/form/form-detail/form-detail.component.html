@@ -1,0 +1,196 @@
+
+
+
+<div class="title">
+    List Form Digital Checklist
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackground]="true">
+        <div class="filter-area">
+            <div class="input-area">
+               
+               
+            </div>
+            <div class="button-area">
+                <button mat-mini-fab [matTooltip]="'add'" (click)="addQuestions()">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <button mat-mini-fab [matTooltip]="'save'" (click)="doSave()">
+                    <mat-icon>save</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content" [class.useBackground]="true" style="margin-top: 100px;">
+
+        <mat-card class="example-card">
+            <mat-card-header>
+              <mat-card-subtitle>Form Data</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Tittle</mat-label>
+                    <input matInput [placeholder]="'Tittle'" [(ngModel)]="schema.Tittle" >
+                </mat-form-field>
+        
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Remarks</mat-label>
+                    <textarea matInput rows="5" [placeholder]="'Remarks'" [(ngModel)]="schema.Remarks">
+                        
+                    </textarea>
+                </mat-form-field>
+                
+              <mat-divider></mat-divider>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+            <mat-card-footer>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+
+    <ng-container *ngFor="let item of schema.Questions;let i=index">
+        <div class="content" [class.useBackground]="true">
+            <mat-card class="example-card">
+                <mat-card-header>
+                  <mat-card-subtitle>Questions Data</mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Questions</mat-label>
+                    <input matInput [placeholder]="'Tittle'" [(ngModel)]="item.QuestionName" (ngModelChange)="changeQuestions(i,$event,'QuestionName')">
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;" >
+                        <mat-label>Question Type</mat-label>
+                        <mat-select  [(ngModel)]="item.QuestionType" (selectionChange)="changeQuestions(i,$event,'QuestionType')">
+                            <mat-option  [value]="'Short Answer'">
+                                Short Answer
+                            </mat-option>
+                            <mat-option  [value]="'Paragraph'">
+                                Paragraph
+                            </mat-option>
+                            <mat-option  [value]="'Multiple choice'">
+                                Multiple choice
+                            </mat-option>
+                            <mat-option  [value]="'Checkboxes'">
+                                Checkboxes
+                            </mat-option>
+                            <mat-option  [value]="'Dropdown'">
+                                Dropdown
+                            </mat-option>
+                            <mat-option  [value]="'File Upload'">
+                                File Upload
+                            </mat-option>
+                            <mat-option  [value]="'Date'">
+                                Date
+                            </mat-option>
+                            <mat-option  [value]="'Time'">
+                                Time
+                            </mat-option>
+                        </mat-select>
+                  </mat-form-field>
+
+                  <mat-divider></mat-divider>
+
+                  <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Short Answer'">
+                    <mat-label>Example</mat-label>
+                    <input matInput placeholder="Example" >
+                  </mat-form-field>
+
+                  <mat-form-field class="example-full-width"  *ngIf="item.QuestionType=='Paragraph'">
+                    <mat-label>Example</mat-label>
+                    <textarea matInput placeholder="Example"></textarea>
+                  </mat-form-field>
+
+                  <ng-container  *ngIf="item.QuestionType=='File Upload'">
+                    <input id="fileInput"   hidden type="file" name="file"  >
+                    <mat-form-field appearance="fill" style="width: 100%;" >
+                        <mat-label>attachment</mat-label>
+                        <input matInput readonly >
+                        <mat-icon class="tappable"  matSuffix >attach_file</mat-icon>
+                    </mat-form-field>
+                  </ng-container>
+
+                  <mat-radio-group aria-labelledby="example-radio-group-label" *ngIf="item.QuestionType=='Multiple choice'" style="display: grid;">
+                    <mat-radio-button class="example-radio-button" *ngFor="let itemO of item.Options;let x=index">
+                        <input matInput placeholder="Example" [(ngModel)]="itemO.label"
+                         (ngModelChange)="changeOptions(i,x,$event)">
+
+                        <button mat-icon-button (click)="deleteOption(i,itemO.id)" aria-label="Example icon button with a open in new tab icon">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-radio-button>
+                    <button mat-icon-button (click)="addOptions(i)" aria-label="Example icon button with a open in new tab icon">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                  </mat-radio-group>
+
+                  <section class="example-section" *ngIf="item.QuestionType=='Checkboxes'">
+                    <p>
+                        <mat-checkbox *ngFor="let itemO of item.Options;let x=index" style="display: block;">
+                            <input matInput placeholder="Example" [(ngModel)]="itemO.label"
+                            (ngModelChange)="changeOptions(i,x,$event)" style="margin-left: 10px;">
+                            <button mat-icon-button (click)="deleteOption(i,itemO.id)" aria-label="Example icon button with a open in new tab icon">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </mat-checkbox>
+                    </p>
+                    <button mat-icon-button (click)="addOptions(i)" aria-label="Example icon button with a open in new tab icon">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                  </section>
+
+                  <ng-container *ngIf="item.QuestionType=='Dropdown'">
+                      <mat-form-field class="example-full-width" *ngFor="let itemO of item.Options;let x=index" style="display: flex;">
+                        <div style="display: flex;">
+                            <input matInput placeholder="option" [(ngModel)]="itemO.label"
+                            (ngModelChange)="changeOptions(i,x,$event)" >
+                            <button mat-icon-button (click)="deleteOption(i,itemO.id)" aria-label="Example icon button with a open in new tab icon">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                       
+                      </mat-form-field>
+                      <button mat-icon-button (click)="addOptions(i)" aria-label="Example icon button with a open in new tab icon">
+                        <mat-icon>add</mat-icon>
+                      </button>
+                  </ng-container>
+
+                  <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Date'">
+                    <input matInput  [matDatepicker]="DateReportPicker" readonly>
+                    <mat-datepicker-toggle  matSuffix [for]="DateReportPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #DateReportPicker disabled="false"></mat-datepicker>
+                  </mat-form-field>
+                 
+                  
+                    <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Time'">
+                        <mat-label> Timepicker</mat-label>
+                        <input matInput  [ngxMatTimepicker]="picker">
+                        <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+                    </mat-form-field>
+                    
+                 
+                  
+
+                  <mat-divider></mat-divider>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="deleteQuestions(item.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card-actions>
+                <mat-card-footer>
+                    
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </ng-container>
+   
+   
+
+
+</div>
+

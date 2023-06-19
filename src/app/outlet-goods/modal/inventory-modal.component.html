@@ -1,15 +1,16 @@
 <div class="outlet-modal">
-    <h3>Outlet Asset</h3>
+    <h3>Outlet Inventory</h3>
     <div class="modal-wrapper-area">
         <div class="form-area">
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Goods Name</mat-label>
                 <input matInput [placeholder]="'Goods Name'" [(ngModel)]="modelData.GoodsName">
+                <mat-icon class="tappable" (click)="openModallistGoods()" matSuffix>search</mat-icon>
             </mat-form-field>
-            
+<!--             
             <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
                 <mat-label>Goods Type</mat-label>
-                <mat-select [(ngModel)]="modelData.GoodsType" >
+                <mat-select [(ngModel)]="modelData.GoodsType" disabled="true">
                    
                     <mat-option  [value]="'ASSET'">
                         ASSET
@@ -19,11 +20,11 @@
                     </mat-option>
 
                 </mat-select>
-            </mat-form-field>
+            </mat-form-field> -->
           
             <mat-form-field appearance="fill" style="width: 100%;">
                 <mat-label>Specification</mat-label>
-                <textarea matInput rows="5" [placeholder]="'Specification'" [(ngModel)]="modelData.Specification"></textarea>
+                <textarea matInput rows="5" [placeholder]="'Specification'" [(ngModel)]="modelData.Specification" readonly></textarea>
             </mat-form-field>
 
             <mat-form-field appearance="fill" style="width: 25%;">

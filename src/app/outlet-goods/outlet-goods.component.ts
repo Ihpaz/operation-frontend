@@ -40,8 +40,6 @@ export class OutletGoodsComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-
-    console.log('msk om')
     this.modelFilter = {
       CodeOutlet: '',
       OutletName: '',
@@ -76,14 +74,29 @@ export class OutletGoodsComponent implements OnInit {
 
   async editOutlet(id) {
     const data= await this.getOutletDetail(id)
-    data['EmpList']=data.employee;
-    data['EmpIDList']=[]
+    
+    const dtAsset= data.goodsOutlet.filter(item => {
+      return item.GoodsType == 'ASSET';
+    });
 
-    for(const dt of data.employee){
-      data['EmpIDList'].push(dt.EmpID)
+    const dtInventory= data.goodsOutlet.filter(item => {
+      return item.GoodsType == 'INVENTORY';
+    });
+
+    data['AssetList']=dtAsset;
+    data['CodeAssetList']=[]
+
+    data['InventoryList']=dtInventory;
+    data['CodeInventoryList']=[]
+
+    for(const dt of dtAsset){
+      data['CodeAssetList'].push(dt.goodsId)
     }
 
-    console.log(data,'idlist')
+    for(const dt of dtInventory){
+      data['CodeInventoryList'].push(dt.goodsId)
+    }
+
 
     const dialogRef = this._dialog.open(OutletGoodsModalComponent, {
       width: '500px',
@@ -126,10 +139,10 @@ export class OutletGoodsComponent implements OnInit {
       
       const req = await this._globalService.runRequest(
         'GET',
-        `api/v1/Outlets/detail/${id}`,
-         
+        `api/v1/Outlets/detailgoods/${id}`,
       );
-
+      
+      console.log(req,'req')
       return req;
     } catch (error) {
       this._globalService.showNotif(error.message);

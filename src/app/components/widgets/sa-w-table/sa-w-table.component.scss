@@ -1,0 +1,179 @@
+.tbl-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mat-spinner circle,
+::ng-deep.mat-progress-spinner circle {
+    stroke: var(--sa-primary);
+}
+
+.table-area {
+    // height: 55vh;
+    width: 100%;
+    max-width: 100%;
+    overflow: auto;
+}
+
+.table-action {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.bg-color.useBg {
+    background-color: #f5f5f5;
+}
+
+table {
+    // width: 100vw;
+    // width: 100%;
+}
+
+td,
+th {
+    padding-left: 8px !important;
+}
+// td.mat-cell,
+// th.mat-header-cell {
+//   border: 1px solid #CCC;
+// }
+
+thead {
+    // background-color: var(--sa-primary);
+    // color: #fff;
+    // box-shadow: 0 3px 20px 2px rgba(0, 0, 0, 0.05);
+}
+// .mat-table-sticky-border-elem-right {
+//   border-left: 1px solid #e0e0e0;
+// }
+//
+// .mat-table-sticky-border-elem-left {
+//   border-right: 1px solid #e0e0e0;
+// }
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: var(--sa-primary);
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    color: var(--ion-color-primaryapp) !important;
+}
+
+::ng-deep .mat-focused .mat-label {
+    color: var(--ion-color-primaryapp) !important;
+}
+
+::ng-deep .mat-focused .mat-select-arrow {
+    color: var(--ion-color-primaryapp) !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: var(--sa-primary);
+    bottom: 0 !important;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+::ng-deep.mat-form-field-ripple {
+    background-color: var(--sa-primary) !important;
+}
+
+.mat-fab.mat-accent,
+.mat-flat-button.mat-accent,
+.mat-mini-fab.mat-accent,
+.mat-raised-button.mat-accent {
+    background-color: var(--sa-primary) !important;
+}
+
+.filter-area {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c1c1c1;
+    border-radius: 5px;
+}
+
+.table-filter-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .table-filter-item {
+        width: 33%;
+    }
+}
+
+input[type=text] {
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+    outline: none;
+    margin: 5px 1px 3px 0;
+    border: 1px solid #DDDDDD;
+    width: 85%;
+    padding: 10px;
+}
+
+input[type=text]:focus {
+    box-shadow: 0 0 5px rgba(29, 120, 116, 1);
+    padding: 10px;
+    margin: 5px 1px 3px 0;
+    border: 1px solid rgba(29, 120, 116, 1);
+}
+
+
+::ng-deep.mat-checkbox-inner-container {
+    height: 14px !important;
+    width: 14px !important;
+}
+
+.mat-checkbox-indeterminate .mat-checkbox-background,
+::ng-deep .mat-checkbox-checked .mat-checkbox-background {
+    background-color: var(--sa-primary) !important;
+}
+// overwrite the ripple overlay on hover and click
+
+::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+    background-color: var(--sa-primary) !important;
+}
+
+
+.scroller-area {
+    // height: 35vh;
+    overflow: auto;
+}
+
+.spinner-item {
+    display: grid;
+    place-items: center;
+    margin-top: 10px;
+}
+
+.small-view {
+    .title {
+        font-size: medium;
+        color: var(--sa-primary);
+    }
+
+    .subtitle {
+        font-size: small;
+    }
+
+    .mini-subtitle {
+        font-size: small;
+    }
+
+    .left {
+        text-align: start;
+    }
+
+    .right {
+        text-align: end;
+    }
+}
