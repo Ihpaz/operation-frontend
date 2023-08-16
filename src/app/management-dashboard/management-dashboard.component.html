@@ -1,0 +1,217 @@
+
+
+
+<div class="title">
+    List Closing
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackground]="true">
+        <div style="margin-bottom: 10px;">
+            <div style="width: 100%;display: flex;justify-content: space-between;">
+                <div style="width: 48%;">
+                    <mat-form-field appearance="fill" [ngStyle]="{'width': '100%' }">
+                        <mat-label>Date Form Period Start</mat-label>
+                        <input matInput [(ngModel)]="modelFilterByMonth.StartDate" [matDatepicker]="HDRptDateStartPicker" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="HDRptDateStartPicker"></mat-datepicker-toggle>
+                        <mat-datepicker #HDRptDateStartPicker disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div style="width: 48%;">
+                    <mat-form-field appearance="fill" [ngStyle]="{'width': '100%' }">
+                        <mat-label>Date Form Period End</mat-label>
+                        <input matInput [(ngModel)]="modelFilterByMonth.EndDate" [matDatepicker]="HDRptDateEnd" readonly>
+                        <mat-datepicker-toggle matSuffix [for]="HDRptDateEnd"></mat-datepicker-toggle>
+                        <mat-datepicker #HDRptDateEnd disabled="false"></mat-datepicker>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div style="width: 100%;display: flex;justify-content: space-between;">
+                <div style="width: 48%;">
+                    <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                        <mat-label>OutletName</mat-label>
+                        <mat-select [(ngModel)]="modelFilterByMonth.OutletName" >
+                           
+                            <mat-option [value]="">
+                                ALL 
+                            </mat-option>
+                            <mat-option  *ngFor="let val of listOutlet;let i = index" [value]="val.OutletName">
+                                {{val.OutletName}}
+                            </mat-option>
+        
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div style="width: 48%;">
+                   <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                       <mat-label>Am</mat-label>
+                       <mat-select [(ngModel)]="modelFilterByMonth.Am" >
+                          
+                           <mat-option [value]="">
+                               ALL 
+                           </mat-option>
+                           <mat-option  *ngFor="let val of listAm;let i = index" [value]="val.AM">
+                               {{val.AM}}
+                           </mat-option>
+       
+                       </mat-select>
+                   </mat-form-field>
+               </div>
+            </div>
+        <div class="sa-w-button">
+            <!-- <button mat-mini-fab [matTooltip]="'Clear'" >
+                <mat-icon>close</mat-icon>
+            </button> -->
+            <button mat-mini-fab [matTooltip]="'Refresh'" >
+                <mat-icon>refresh</mat-icon>
+            </button>
+           
+        
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>POIN CHECK</th>
+                        <th>NO</th>
+                        <th>ITEM CHECKLIST</th>
+                        <th>SPV</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3">AVERAGE</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="13">COMPLIANCE</td>
+                        <td>1</td>
+                        <td>ATTENDANCE</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>KITCHEN PREPARATION</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>FRONT PREPARATION</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>FOOD QUALITY CHECK (WPART)</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>SOUP QUALITY</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>PEST</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>SUHU</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>NPS</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>RED BILL</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>CUSTOMER EXPERIENCE & BRIEFING</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>STORAGE CHECKLIST</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>RECEIVING</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td>CLOSING (CLEANING)</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">AVERAGE</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td rowspan="13">COMPLIANCE</td>
+                        <td>1</td>
+                        <td>ATTENDANCE</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>FOOD QUALITY CHECK (WPART)</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>SOUP QUALITY</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>PEST</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>SUHU</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>NPS</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>RED BILL</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>CUSTOMER EXPERIENCE & BRIEFING</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>STORAGE CHECKLIST</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>RECEIVING</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>CLOSING (CLEANING)</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,11 @@
+@import "~quill/dist/quill.core.css";
+@import '~quill/dist/quill.bubble.css';
+@import "~quill/dist/quill.snow.css";
+
 :root {
     // --sa-primary: #e08527;
-    --sa-primary: #ee2e31;
+    // --sa-primary: #ee2e31;
+    --sa-primary:#1866C9;
     --sa-primary-red: #ec4c4c;
     --sa-primary-orange: #e08527;
     --sa-primary-default: #1d7874;

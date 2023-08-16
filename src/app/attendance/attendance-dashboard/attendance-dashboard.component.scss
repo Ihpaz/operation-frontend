@@ -129,3 +129,10 @@
 ::ng-deep.mat-datepicker-toggle-active {
     color: var(--sa-primary) !important;
 }
+
+.mat-fab.mat-accent,
+.mat-flat-button.mat-accent,
+.mat-mini-fab.mat-accent,
+.mat-raised-button.mat-accent {
+    background-color: var(--sa-primary) !important;
+}

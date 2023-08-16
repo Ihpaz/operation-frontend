@@ -1,0 +1,69 @@
+
+    <h3  mat-dialog-title>User</h3>
+
+    <mat-dialog-content>
+        <div class="form-area">
+            <div style="width: 100%;display: flex;justify-content: space-between;">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Username</mat-label>
+                    <input matInput [placeholder]="'Username'" [(ngModel)]="modelData.Username" >
+                </mat-form-field>
+            </div>
+            <div style="width: 100%;display: flex;justify-content: space-between;">
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Password</mat-label>
+                    <input matInput [placeholder]="'Password'" [(ngModel)]="modelData.Password" >
+                </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;" >
+                <mat-label>Rule</mat-label>
+                <mat-select [(ngModel)]="modelData.Type" >
+                   
+                    <mat-option  [value]="'SPV'">
+                       SPV
+                    </mat-option>
+                    <mat-option  [value]="'AM'">
+                        AM
+                    </mat-option>
+
+                </mat-select>
+            </mat-form-field>
+
+          
+            <mat-form-field appearance="fill" style="width: 100%;" >
+                <mat-label>Outlet</mat-label>
+                <input matInput [placeholder]="'Find Outlet'" readonly>
+                <mat-icon class="tappable" (click)="openModalOutlet()" matSuffix>search</mat-icon>
+            </mat-form-field>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Outlet Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="tappable" *ngFor="let val of modelData.OutletList;let i = index">
+                            <td>{{ val.OutletName }}</td>
+                            <td>
+                                <mat-icon class="tappable" (click)="deleteEmp(val.id)">delete</mat-icon>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+    </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-stroked-button (click)="doCancel()" style="margin-right: 10px;"
+        [disabled]="onRequest">Cancel</button>
+    <button mat-raised-button (click)="doSave()" [disabled]="onRequest">
+        Save
+        <mat-spinner diameter="25" *ngIf="onRequest"></mat-spinner>
+    </button>
+    </mat-dialog-actions>
+       

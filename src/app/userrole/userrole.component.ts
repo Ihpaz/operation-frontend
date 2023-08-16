@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalService } from 'app/services/global.service';
 import { ISAMWTable } from 'app/components/widgets/sam-w-table/sam-w-table.component';
+import { UserroleModalComponent } from './modal/userrole-modal.component';
 
 @Component({
   selector: 'app-userrole',
@@ -10,21 +11,169 @@ import { ISAMWTable } from 'app/components/widgets/sam-w-table/sam-w-table.compo
 })
 export class UserRoleComponent implements OnInit {
 
-  tblSchema: ISAMWTable = {
-    name: 'MsOutlet',
-    headers: ['No','Outlet Type', 'Area Manager', 'Regional Manager','Code Outlet','Outlet Name','District Area','Ownership','Outlet Status','Address',''],
+  tblSchema: any =  {
+    name: "MsUserRole",
+    pageSize: [
+      10,
+      50,
+      100
+    ],
     requestOptions: {
-      path: 'Api/v1/Outlets/datatable',
-      params: [
-        { key: 'CodeOutlet', value: null },
-        { key: 'OutletName', value: null },
-      ],
-      paramsCanNull: true,
+      path: "Api/v1/userrole/datatable",
+      params: []
     },
-    limit: 5,
-    pageSize: [5, 15, 50],
-    withAction: true,
-    isSmallScreen: false,
+    useFilterFields: true,
+    width: "100vw",
+    height: "70vh",
+    fields: [
+      {
+        name: "Username",
+        title: "Username",
+        width: 100,
+        canOrder: true,
+        isSticky: true,
+        filterOptions: {
+          canFilter: true,
+          filterType: "text",
+          filterSelect: {
+            path: null,
+            params: []
+          }
+        }
+      },
+      {
+        name: "type",
+        title: "Role",
+        width: 50,
+        canOrder: true,
+        isSticky: true,
+        filterOptions: {
+          canFilter: true,
+          filterType: "text",
+          filterSelect: {
+            path: null,
+            params: []
+          }
+        }
+      },
+      {
+        name: "outlet",
+        title: "Outlet",
+        width: 300,
+        canOrder: true,
+        isSticky: false,
+        filterOptions: {
+          canFilter: true,
+          filterType: "text",
+          filterSelect: {
+            path: null,
+            params: []
+          }
+        }
+      }
+    ],
+    fieldActions: [
+      {
+        title: "Delete",
+        icon: "delete",
+        width: "100px",
+        action: {
+          type: "pushPage",
+          pageId: "attrsrevform",
+          widthModal: null,
+          params: [
+           
+          ],
+          requestOptions: {
+            path: null,
+            params: []
+          },
+          confirmation: {
+            useConfirmation: false,
+            withRemark: false,
+            remarkKey: null,
+            message: null
+          },
+          onSuccessRequest: {
+            type: "stay",
+            pageId: null,
+            loadTable: [],
+            alert: {
+              useAlert: false,
+              message: null
+            }
+          },
+          viewFileKey: "URL",
+          showHideCondition: {
+            useShowHideCondition: false,
+            condition: {
+              and: [],
+              or: []
+            }
+          }
+        }
+      }
+    ],
+    forMobile: {
+      leftField: {
+        title: "username",
+        subtitle: "type",
+        miniSubtitle: null
+      },
+      rightField: {
+        title: null,
+        subtitle:null,
+        miniSubtitle: null
+      },
+      height: "100vh",
+      useAction: true,
+      withBackground: true,
+      actions: [
+        {
+          title: "View",
+          icon: "info",
+          width: "100px",
+          action: {
+            type: "pushPage",
+            pageId: "attrsrevform",
+            widthModal: null,
+            params: [
+              {
+                key: "RecID",
+                value: null
+              }
+            ],
+            requestOptions: {
+              path: null,
+              params: []
+            },
+            confirmation: {
+              useConfirmation: false,
+              withRemark: false,
+              remarkKey: null,
+              message: null
+            },
+            onSuccessRequest: {
+              type: "stay",
+              pageId: null,
+              loadTable: [],
+              alert: {
+                useAlert: false,
+                message: null
+              }
+            },
+            viewFileKey: "URL",
+            showHideCondition: {
+              useShowHideCondition: false,
+              condition: {
+                and: [],
+                or: []
+              }
+            }
+          }
+        }
+      ]
+    }
   }
 
   datatable: any[] = [];
@@ -53,49 +202,36 @@ export class UserRoleComponent implements OnInit {
     this._globalService.eventPublish('loadTableSAM:MsOutlet', true);
   }
 
-  // addOutlet() {
-  //   const dialogRef = this._dialog.open(OutletModalComponent, {
-  //     width: '500px',
-  //     disableClose: true,
-  //     autoFocus: false,
-  //     data: {
-  //       RecID: null
-  //     },
-  //   });
+  addUser() {
+    const dialogRef = this._dialog.open(UserroleModalComponent, {
+      width: '500px',
+      disableClose: true,
+      autoFocus: false,
+      data: {
+        RecID: null
+      },
+    });
 
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this._globalService.showNotif('Success save outlet');
-  //       this._globalService.eventPublish('loadTableSAM:MsOutlet', true);
-  //     }
-  //   });
-  // }
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this._globalService.showNotif('Success save User role');
+        this._globalService.eventPublish('loadTable:MsUserRole', true);
+      }
+    });
+  }
 
-  // async editOutlet(id) {
-  //   const data= await this.getOutletDetail(id)
-  //   data['EmpList']=data.employee;
-  //   data['EmpIDList']=[]
+  async callbackActionHandler(action: any) {
+    try {
+      
+          // await this.deleteForm(action.value);
 
-  //   for(const dt of data.employee){
-  //     data['EmpIDList'].push(dt.EmpID)
-  //   }
-
-  //   console.log(data,'idlist')
-
-  //   const dialogRef = this._dialog.open(OutletModalComponent, {
-  //     width: '500px',
-  //     disableClose: true,
-  //     autoFocus: false,
-  //     data: data,
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     if (result) {
-  //       this._globalService.showNotif('Success edit outlet');
-  //       this._globalService.eventPublish('loadTableSAM:MsOutlet', true);
-  //     }
-  //   });
-  // }
+    } catch (error) {
+        // this._globalService.showSnackBar(error.message);
+        this._globalService.showNotif(error.message);
+    } finally {
+        this._globalService.eventPublish('global:showLoader', false);
+    }
+  }
 
   async deleteOutlet(id) {
     const alertData = await this._globalService.showAlert('Are you sure want to delete ?');

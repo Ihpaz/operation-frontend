@@ -39,8 +39,37 @@ import { SaWTableComponent } from 'app/components/widgets/sa-w-table/sa-w-table.
 import { VocNegatifComponent } from 'app/voc-negatif/voc-negatif.component';
 import { VocModalComponent, VocSubCategoryModalComponent } from 'app/voc-negatif/modal/voc-modal.component';
 import { NgChartsModule } from 'ng2-charts';
-import { VocDashboardComponent } from 'app/voc/voc-dashboard/sam-dashboard/voc-dashboard.component';
-
+import { VocDashboardComponent } from 'app/voc/voc-dashboard/general-dashboard/voc-dashboard.component';
+import { VocDaytodayDashboardComponent } from 'app/voc/voc-dashboard/daytoday-dashboard/voc-daytoday-dashboard.component';
+import { AttendanceComponent } from 'app/attendance/attendance.component';
+import { OutletEmployeeComponent } from 'app/outlet-employee/outlet-employee.component';
+import { ReceivingComponent } from 'app/receiving/receiving.component';
+import { ReceivingDetailComponent } from 'app/receiving/receiving-detail/receiving-detail.component';
+import { QuillModule } from 'ngx-quill'
+import { SoupQualityComponent } from 'app/soup-quality/soup-quality.component';
+import { SoupQualityDetailComponent } from 'app/soup-quality/soup-quality-detail/soup-quality-detail.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
+import { EmployeeComponent } from 'app/employee/employee.component';
+import { SoupQualityDashboardComponent } from 'app/soup-quality/soup-quality-dashboard/soup-quality-dashboard.component';
+import { AttendanceDashboardComponent } from 'app/attendance/attendance-dashboard/attendance-dashboard.component';
+import { ReceivingByCkComponent } from 'app/receiving/receiving-by-ck/receiving-by-ck.component';
+import { ReceivingDashboardComponent } from 'app/receiving/receiving-dashboard/receiving-dashboard.component';
+import { OutletsModalComponent, UserroleModalComponent } from 'app/userrole/modal/userrole-modal.component';
+import { ClosingComponent } from 'app/closing/closing.component';
+import { ClosingDashboardComponent } from 'app/closing/closing-dashboard/closing-dashboard.component';
+import { StorageDashboardComponent } from 'app/storage/storage-dashboard/storage-dashboard.component';
+import { StorageComponent } from 'app/storage/storage.component';
+import { RedbillDashboardComponent } from 'app/redbill/redbill-dashboard/redbill-dashboard.component';
+import { RedbillComponent } from 'app/redbill/redbill.component';
+import { CxDashboardComponent } from 'app/cx/cx-dashboard/cx-dashboard.component';
+import { PestDashboardComponent } from 'app/pest/pest-dashboard/pest-dashboard.component';
+import { FrontPrepDashboardComponent } from 'app/front-prep/front-prep-dashboard/front-prep-dashboard.component';
+import { KitchenPrepDashboardComponent } from 'app/kitchen-prep/kitchen-prep-dashboard/kitchen-prep-dashboard.component';
+import { FoodLooksDashboardComponent } from 'app/food-looks/food-looks-dashboard/food-looks-dashboard.component';
+import { SuhuDashboardComponent } from 'app/suhu/suhu-dashboard/suhu-dashboard.component';
+import { SuhuComponent } from 'app/suhu/suhu.component';
+import { NpsDashboardComponent } from 'app/nps/nps-dashboard/nps-dashboard.component';
+import { ManagementDashboardComponent } from 'app/management-dashboard/management-dashbaord.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -57,7 +86,9 @@ import { VocDashboardComponent } from 'app/voc/voc-dashboard/sam-dashboard/voc-d
     MatIconModule,
     MaterialModule,
     NgxMatTimepickerModule,
-    NgChartsModule
+    NgChartsModule,
+    QuillModule.forRoot(),
+    EditorModule
   ],
   declarations: [
     DashboardComponent,
@@ -92,7 +123,37 @@ import { VocDashboardComponent } from 'app/voc/voc-dashboard/sam-dashboard/voc-d
     VocNegatifComponent,
     VocModalComponent,
     VocSubCategoryModalComponent,
-    VocDashboardComponent
+    VocDashboardComponent,
+    VocDaytodayDashboardComponent,
+    AttendanceComponent,
+    OutletEmployeeComponent,
+    ReceivingComponent,
+    ReceivingDetailComponent,
+    SoupQualityComponent,
+    SoupQualityDetailComponent,
+    EmployeeComponent,
+    SoupQualityDashboardComponent,
+    AttendanceDashboardComponent,
+    ReceivingByCkComponent,
+    ReceivingDashboardComponent,
+    UserroleModalComponent,
+    OutletsModalComponent,
+    ClosingComponent,
+    ClosingDashboardComponent,
+    StorageDashboardComponent,
+    StorageComponent,
+    RedbillDashboardComponent,
+    RedbillComponent,
+    CxDashboardComponent,
+    PestDashboardComponent,
+    FormComponent,
+    FrontPrepDashboardComponent,
+    KitchenPrepDashboardComponent,
+    FoodLooksDashboardComponent,
+    SuhuDashboardComponent,
+    SuhuComponent,
+    NpsDashboardComponent,
+    ManagementDashboardComponent
     
   ]
 })

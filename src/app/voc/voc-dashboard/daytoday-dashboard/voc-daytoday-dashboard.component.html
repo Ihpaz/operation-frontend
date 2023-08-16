@@ -1,0 +1,96 @@
+<div class="title">
+   Report Voc Day To Day
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackground]="false">
+        <div style="margin-bottom: 10px;">
+            <div style="width: 100%;display: flex;justify-content: space-between;">
+                <div style="width: 48%;">
+                    <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                        <mat-label>Year</mat-label>
+                        <mat-select [(ngModel)]="modelFilter.Year" >
+                           
+                          
+                            <mat-option  *ngFor="let val of year;let i = index" [value]="val">
+                                {{val}}
+                            </mat-option>
+        
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div style="width: 48%;">
+                    <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                        <mat-label>Month</mat-label>
+                        <mat-select [(ngModel)]="modelFilter.Bulan" >
+                           
+                         
+                            <mat-option  *ngFor="let val of bulan;let i = index" [value]="i+1">
+                                {{val}}
+                            </mat-option>
+        
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <!-- <div style="width: 100%;display: flex;justify-content: space-between;">
+                <div style="width: 48%;">
+                    <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                        <mat-label>Category Complaint</mat-label>
+                        <mat-select [(ngModel)]="modelFilter.TypeVoc" >
+                           
+                            <mat-option [value]="">
+                                ALL 
+                            </mat-option>
+                            <mat-option  *ngFor="let val of listCategoryComplaint;let i = index" [value]="val">
+                                {{val}}
+                            </mat-option>
+        
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+             -->
+            </div>
+        <div class="sa-w-button">
+            <!-- <button mat-mini-fab [matTooltip]="'Clear'" >
+                <mat-icon>close</mat-icon>
+            </button> -->
+            <button mat-mini-fab [matTooltip]="'Refresh'" (click)="filter()">
+                <mat-icon>refresh</mat-icon>
+            </button>
+           
+        
+        </div>
+        
+     
+    </div>
+
+    <!-- <div class="ttwo-main useBackground" >
+        <div class="left content" [class.useBackground]="false" [ngStyle]="{'width': leftWidth + '%' }">
+            <label class="title">Complaint Grafik</label>
+            <button mat-mini-fab [matTooltip]="'download'"  (click)="downloadChart()">
+                <mat-icon>download</mat-icon>
+            </button>
+            <canvas baseChart class="chart" #chartCanvas 
+                [data]="barChartData"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [type]="barChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+             </canvas>
+
+        </div>
+    </div> -->
+
+    <div class="content" [class.useBackground]="true" style="margin-top: 30px;">
+        <label class="title">VOC By Day</label>
+        <app-sa-w-table [schema]="tblSchema" (onDataValue)="onDataValueHandler($event)" [globalValue]="modelFilter">
+        </app-sa-w-table>
+    </div>
+   
+
+</div>
+

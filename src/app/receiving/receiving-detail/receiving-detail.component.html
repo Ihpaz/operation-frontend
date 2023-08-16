@@ -1,0 +1,269 @@
+
+
+
+<div class="title">
+    List Form Digital Checklist
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackgroundHeader]="true">
+        <div class="filter-area">
+            <div class="input-area">
+               
+               
+            </div>
+            <div class="button-area">
+              
+                <button mat-mini-fab [matTooltip]="'save'" (click)="doSave()">
+                    <mat-icon>save</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content" [class.useBackground]="true" style="margin-top: 100px;">
+
+        <mat-card class="example-card">
+            <mat-card-header style="background: aliceblue;text-align: center;">
+              
+                <h1 style="margin: auto;">
+                  Pengecekan Kedatangan Barang
+                </h1>
+                <mat-divider></mat-divider>
+              
+              <mat-card-subtitle>
+                
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <!-- <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Tittle</mat-label>
+                    <input matInput [placeholder]="'Tittle'" [(ngModel)]="schema.Tittle" >
+                </mat-form-field>
+        
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Remarks</mat-label>
+                    <textarea matInput rows="5" [placeholder]="'Remarks'" [(ngModel)]="schema.Remarks">
+                        
+                    </textarea>
+                </mat-form-field> -->
+                <br/>
+                <p><strong>&quot;INSTRUKSI KERJA&quot;</strong><br />
+                  1. Formulir ini &quot;<strong>WAJIB</strong>&quot; diisi setiap kali adanya &quot;<strong>KEDATANGAN BARANG</strong>&quot;<br />
+                  2. Formulir ini digunakan untuk mendata Pengecekan Barang yang Datang secara Quality pada :</p>
+                  
+                  <p>- Bahan/Produk <strong>BBQ </strong>Critical :&nbsp;</p>
+                  
+                  <ol>
+                    <li><strong>AYAM KECAP</strong></li>
+                    <li><strong>AYAM MARINASI CUT 9</strong></li>
+                    <li><strong>AYAM PANGGANG</strong></li>
+                    <li><strong>AYAM UTUH</strong></li>
+                    <li><strong>BEBEK PANGGANG</strong></li>
+                    <li><strong>MARINASI BLP ORIGINAL</strong></li>
+                    <li><strong>BERAS</strong></li>
+                  </ol>
+                  
+                  <p>-Bahan/Produk <strong>TOPPER </strong>Critical :</p>
+                  
+                  <ol>
+                    <li><strong>AYAM JAMUR</strong></li>
+                    <li><strong>AYAM CINCANG</strong></li>
+                    <li><strong>AYAM RICA-RICA</strong></li>
+                    <li><strong>BEEF SLICE</strong></li>
+                    <li><strong>AYAM CHASHU</strong></li>
+                    <li><strong>HONEY BBQ CHICKEN</strong></li>
+                    <li><strong>BEEF BRISKET</strong></li>
+                    <li><strong>IGA SAPI</strong></li>
+                    <li><strong>PANGSIT</strong></li>
+                  </ol>
+                  
+                  <p>-Bahan/Produk <strong>SIDE DISH</strong> Critical :<br />
+                  &nbsp; &nbsp; &nbsp; <strong>1. Ceker<br />
+                  &nbsp; &nbsp; &nbsp; 2. Ayam Tori<br />
+                  &nbsp; &nbsp; &nbsp; 3. Lumpia<br />
+                  &nbsp; &nbsp; &nbsp; 4. Lumpia Kulit Tahu<br />
+                  &nbsp; &nbsp; &nbsp; 5. Pangsit<br />
+                  &nbsp; &nbsp; &nbsp; 6. Siomay<br />
+                  &nbsp; &nbsp; &nbsp; 7. Shrimp Ball</strong></p>
+                  
+                  <p><br />
+                  <strong>&quot;STANDARD PRODUCT KETIKA KEDATANGAN BARANG&quot;</strong><br />
+                  A. Ayam Kecap, Ayam Marinasi Cut 9, Ayam Panggang, Ayam Utuh, Bebek Panggang, Marinasi BLP Original, dan all Produk Topper, Side Dish (diatas) :<br />
+                  &nbsp; &nbsp; 1. Tekstur <strong>&quot;TIDAK LEMBEK&quot;</strong> keseluruhan (<strong>Bagian Tengah Produk Masih Keras</strong>)<br />
+                  &nbsp; &nbsp; 2. Penampakan <strong>&quot;TIDAK HANCUR&quot;</strong><br />
+                  B. Beras :<br />
+                  <strong>&nbsp;&quot;TIDAK BERKUTU&quot;</strong></p>
+                  
+              <mat-divider></mat-divider>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+            <mat-card-footer>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+
+    <div class="content" [class.useBackground]="true">
+      <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>
+                Outlet Name
+            </mat-card-title>
+            <mat-card-subtitle>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-divider></mat-divider>   
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <input matInput [placeholder]="'Outlet Name'" [(ngModel)]="outlet" readonly>
+          </mat-form-field>  
+          </mat-card-content>
+      </mat-card>
+    </div>
+
+    <ng-container *ngFor="let item of schema.Questions;let i=index">
+      <div class="content" [class.useBackground]="true">
+          <mat-card class="example-card" style="z-index: inherit;">
+              <mat-card-header>
+                <mat-card-subtitle>
+
+                  <!-- <ng-container style="display: flex;">
+                    
+                    <quill-view [content]="item.QuestionName" format="html" theme="snow"></quill-view>
+                  </ng-container> -->
+
+                  <h1 style="margin: auto;color: black;display: flex;" >
+                    {{i+1}}. 
+                    <P  [innerHTML]="sanitizeHtml(item.QuestionName)"></P>
+                   <!-- {{i+1}}. {{item.QuestionName}}  -->
+                  </h1>
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <!-- <mat-form-field appearance="fill" style="width: 100%;">
+                  <mat-label>Questions</mat-label>
+                  <input matInput [placeholder]="'Tittle'" [(ngModel)]="item.QuestionName" >
+                </mat-form-field> -->
+
+                
+
+                <mat-divider></mat-divider>
+
+                <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Short Answer'">
+                  <mat-label>Your Answer</mat-label>
+                  <input matInput placeholder="Answer" (change)="addUserAnswer(i,item,$event.target.value)"
+                  [value]="item.AnswerValue">
+                </mat-form-field>
+
+                <mat-form-field class="example-full-width"  *ngIf="item.QuestionType=='Paragraph'">
+                  <mat-label>Example</mat-label>
+                  <textarea matInput placeholder="Example" (change)="addUserAnswer(i,item,$event.target.value)"
+                  [value]="item.AnswerValue"></textarea>
+                </mat-form-field>
+
+                <ng-container  *ngIf="item.QuestionType=='File Upload'">
+                  <div class="content-img-card" *ngIf="item.AnswerValue">
+                    <img mat-card-image [src]="item.AnswerValue">
+
+                     <mat-icon class="tappable" (click)="removeAttachment($event,i)" 
+                      matSuffix>cancel</mat-icon>
+
+                    <!-- <iframe [src]="'https://drive.google.com/file/d/1MVsocdtgrDxghYqEVVRHmwo5utQEH7P7/view?usp=drive_link'" frameborder="0" width="100%" height="100%"></iframe> -->
+
+                </div>
+                  <mat-label class="tappable" *ngIf="item.AnswerValue">{{ item.AnswerValue }}</mat-label>
+
+                  <ng-container *ngIf="!item.AnswerValue">
+                    <input id="fileInput"   hidden type="file" name="file"  (change)="fileChange($event.target.files,i)" >
+                    <mat-form-field appearance="fill" style="width: 100%;" >
+                        <mat-label>attachment</mat-label>
+                        <input matInput readonly >
+                        <mat-icon class="tappable"  matSuffix (click)="attachFile()">attach_file</mat-icon>
+                    </mat-form-field>
+                  </ng-container>
+               
+                </ng-container>
+
+                <mat-radio-group aria-labelledby="example-radio-group-label" *ngIf="item.QuestionType=='Multiple choice'" style="display: grid;">
+                  <mat-radio-button class="example-radio-button" *ngFor="let itemO of item.Options;let x=index" [value]="itemO.id" 
+                  [checked]="itemO.id == item.AnswerValue"
+                      (click)="addUserAnswer(i,item,itemO.id)">
+                     <span style="color: black;">{{itemO.label}}</span>
+                  </mat-radio-button>
+               
+                </mat-radio-group>
+
+                <section class="example-section" *ngIf="item.QuestionType=='Checkboxes'">
+                  <p >
+                      <mat-checkbox *ngFor="let itemO of item.Options;let x=index" style="display: block;"  
+                      (click)="addUserAnswer(i,item,itemO.id,item.QuestionType)" [(ngModel)]="itemO.checked" >
+                        <span style="color: black;">{{itemO.label}}</span>
+                      </mat-checkbox>
+                  </p>
+
+                  <!-- <p *ngIf="!item.AnswerValue">
+                    <mat-checkbox *ngFor="let itemO of item.Options;let x=index" style="display: block;"  
+                    (click)="addUserAnswer(i,item,itemO.id,item.QuestionType)"  >
+                      <span style="color: black;">{{itemO.label}}</span>
+                    </mat-checkbox>
+                </p> -->
+                 
+                </section>
+
+                <ng-container *ngIf="item.QuestionType=='Dropdown'">
+                    <!-- <mat-form-field class="example-full-width" *ngFor="let itemO of item.Options;let x=index" style="display: flex;">
+                      <div style="display: flex;">
+                          <input matInput placeholder="option" [(ngModel)]="itemO.label" >
+                      </div>
+
+
+                    </mat-form-field> -->
+
+                    <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                      <!-- <mat-label>Category Complaint</mat-label> -->
+                      <mat-select [(ngModel)]="item.AnswerValue" (ngModelChange)="addUserAnswer(i,item,$event,item.QuestionType)" >
+                      
+                          <mat-option  *ngFor="let itemO of item.Options;let x=index" [value]="itemO.id">
+                              {{itemO.label}}
+                          </mat-option>
+      
+                      </mat-select>
+                    </mat-form-field>
+                </ng-container>
+
+                <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Date'">
+                  <input matInput  [matDatepicker]="DateReportPicker" readonly>
+                  <mat-datepicker-toggle  matSuffix [for]="DateReportPicker"></mat-datepicker-toggle>
+                  <mat-datepicker #DateReportPicker disabled="false"></mat-datepicker>
+                </mat-form-field>
+               
+                
+                  <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Time'">
+                      <mat-label> Timepicker</mat-label>
+                      <input matInput  [ngxMatTimepicker]="picker">
+                      <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+                  </mat-form-field>
+                  
+               
+                
+
+                <mat-divider></mat-divider>
+              </mat-card-content>
+              <mat-card-actions>
+                  <!-- <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="deleteQuestions(item.id)">
+                      <mat-icon>delete</mat-icon>
+                  </button> -->
+              </mat-card-actions>
+              <mat-card-footer>
+                  
+              </mat-card-footer>
+          </mat-card>
+      </div>
+  </ng-container>
+   
+   
+
+
+</div>
+

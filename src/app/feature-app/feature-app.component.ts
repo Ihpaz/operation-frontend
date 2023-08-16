@@ -13,9 +13,10 @@ export class FeatureAppComponent implements OnInit {
     private _globalService: GlobalService,
   ) { }
 
-  ngOnInit() {
+  role: string='';
+  async ngOnInit() {
 
-    
+      this.role = await this._globalService.getStorage('role');
   }
 
   gotoApp(app:string){

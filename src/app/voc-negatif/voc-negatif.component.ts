@@ -353,7 +353,7 @@ export class VocNegatifComponent implements OnInit {
   async callbackActionHandler(action: any) {
     try {
       
-          await this.addCategory(action);
+          await this.addCategory(action.value);
 
     } catch (error) {
         // this._globalService.showSnackBar(error.message);

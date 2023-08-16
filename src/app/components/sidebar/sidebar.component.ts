@@ -68,4 +68,9 @@ export class SidebarComponent implements OnInit {
     })
 
   }
+
+  Logout(){
+    console.log('logout')
+    this._globalService.Logout();
+  }
 }

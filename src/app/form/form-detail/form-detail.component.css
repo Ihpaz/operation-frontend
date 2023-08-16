@@ -7,7 +7,9 @@
    
 } */
 
-
+.mat-label{
+    color: black!important;
+}
 .title {
     padding: 20px;
     font-size: 22px;

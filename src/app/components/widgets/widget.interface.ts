@@ -32,6 +32,7 @@ export interface IDisabledCondition {
 
 export interface IRequestOptions {
     path: string;
+    pathDownload: string;
     params: IParams[];
     paramsCanNull?: boolean;
 }

@@ -73,7 +73,6 @@ export class GlobalService {
            
 
             const token = await this.getStorage('token');
-            console.log('1')
             const newBody: { key: string, value: any }[] = body && body.length ? body : [];
            
             const iRequest: IRequest = {
@@ -84,13 +83,11 @@ export class GlobalService {
                 token: token,
             };
 
-            console.log(iRequest,'ireq')
 
             const req = await this._requestService.runRequest(iRequest);
 
             return req;
         } catch (error) {
-            console.log(error,'error')
             const arrError=['expired token','invalid token','required access token','required two verification otp','jwt malformed']
             if (arrError.includes(error.message.toLowerCase())) {
                 this.showAlert(error.message)

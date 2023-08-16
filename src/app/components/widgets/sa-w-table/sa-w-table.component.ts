@@ -81,6 +81,8 @@ export class SaWTableComponent implements OnInit, OnDestroy {
     webSetting: any = {};
     StoreFieldAction:any={};
 
+    useDownloadPdfBtn: boolean= false;
+
     constructor(
         private _globalService: GlobalService,
         private _dynamicService: DynamicService,
@@ -93,7 +95,9 @@ export class SaWTableComponent implements OnInit, OnDestroy {
             this.useFilterFields = this.schema.useFilterFields;
             this.withCheckbox = this.schema.hasOwnProperty('withCheckbox') ? this.schema.withCheckbox : false;
             this.IsHide =  this.schema.hasOwnProperty('IsHide') ? this.schema.IsHide : false;
-
+            this.useDownloadPdfBtn =this.schema.hasOwnProperty('useDownloadPdfButton') ? this.schema.useDownloadPdfButton : false;
+           
+            console.log(this.schema,'schema')
             if (this.withCheckbox && this.webSetting && this.webSetting.hasOwnProperty('WebSettingTableCheckAll')) {
                 this.withCheckbox = this.webSetting.WebSettingTableCheckAll;
             }
@@ -140,7 +144,6 @@ export class SaWTableComponent implements OnInit, OnDestroy {
                 }
             }
             this.dataSource = dataRaw;
-            console.log(this.dataSource,'dtsource')
             if (!this.dataSource.length) {
                 this.isNoData = true;
                 const fieldName = {};
@@ -168,6 +171,7 @@ export class SaWTableComponent implements OnInit, OnDestroy {
 
             this._globalService.eventSubscribe(`loadTable:${this.schema.name}`, async (isLoad: boolean) => {
                 try {
+                  
                     if (isLoad) {
                         if (!this.skip) {
                             this.limit = this.schema.pageSize.length ? this.schema.pageSize[0] : 10;
@@ -201,6 +205,8 @@ export class SaWTableComponent implements OnInit, OnDestroy {
                     }
                 } catch (error) {
                     this._globalService.showNotif(error.message);
+                }finally{
+                   
                 }
             });
 
@@ -402,7 +408,11 @@ export class SaWTableComponent implements OnInit, OnDestroy {
         }
 
         this.onChangeValue.emit(finalValue);
-        this.callbackAction.emit(value);
+
+        const dtCallback={action:action.type,value:value};
+        this.callbackAction.emit(dtCallback);
+        // this.callbackAction.emit(value);
+        
     }
 
     itemOnClick(value: any, index: number) {
@@ -520,6 +530,87 @@ export class SaWTableComponent implements OnInit, OnDestroy {
 
     openModalSelect() {
         // this._dynamicService.showModalSelect('', [], '', '', true);
+    }
+
+    async downloadPdf(){
+        const token = await this._globalService.getStorage('token');
+        const bodyData: any = {};
+        for (const item of this.schema.requestOptions.params) {
+            bodyData[item.key] = this.globalValue.hasOwnProperty(item.key) ? this.globalValue[item.key] : item.value;
+        };
+
+        const parameter: any[] = [{
+            key: 'access_token',
+            value: token,
+        }];
+           
+        if(Object.keys(bodyData).length > 0){
+            for(let  key in bodyData){
+                parameter.push({
+                    key:'data'+key,
+                    value:bodyData[key]
+                });
+            }
+        }
+       
+
+      
+
+        if(this.dataFilter.length > 0){
+            for(let dt of this.dataFilter){
+                parameter.push({
+                    key:'filter'+dt.field,
+                    value:dt.value
+                });
+            }
+        }
+     
+
+        if(this.orderBy.field){
+            for(let key in this.orderBy){
+                parameter.push({
+                    key:'orderBy'+key,
+                    value:this.orderBy[key]
+                });
+            }
+    
+        }
+       
+        parameter.push({
+            key: 'limit',
+            value: this.limit,
+        },
+        {
+            key: 'skip',
+            value: this.skip,
+        }
+        );
+
+        
+        const req = await this._globalService.runRequest('GET',this.schema.requestOptions.pathDownload, parameter);
+       
+        window.location.href = req.data;
+    }
+
+    getCellClass(value: number): string {
+        if (value > 0) {
+          return 'color-red'; // CSS class for values greater than 20
+        }  else {
+          return ''; // No additional CSS class for other values
+        }
+    }
+
+    getTotalComplaint(fieldName) {
+
+     
+        if(fieldName=='Code'){
+            return 'Total'
+        }else if(fieldName > 0 || fieldName=='total'){
+            return this.dataSource.map(t => t[fieldName]).reduce((acc, value) => parseInt(acc) + parseInt(value), 0);
+        }else{
+            return '';
+        }
+        
     }
 
 }

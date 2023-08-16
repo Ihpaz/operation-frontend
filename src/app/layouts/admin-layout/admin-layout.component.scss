@@ -1,0 +1,15 @@
+mat-icon{
+    color: var(--sa-primary);
+}
+
+.cnavbar{
+    display: flex;
+    justify-content: space-between;    position: fixed;
+    z-index: 999;
+    // background-color: var(--primary);
+    width: -webkit-fill-available;
+    background-image: url('../../../assets/img/cover.jpg');
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; 
+    height: 50px;
+}

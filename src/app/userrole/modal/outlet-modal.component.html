@@ -1,0 +1,31 @@
+<div class="dd-select">
+    <h3>Select Outlet</h3>
+    <div class="search-area">
+        <input type="text" [(ngModel)]="search" (ngModelChange)="onSearch()" [placeholder]="'Search'">
+    </div>
+    <div class="table-wrapper" *ngIf="!onRequest">
+        <table>
+            <thead>
+                <tr>
+                    <th>Outlet</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="tappable" *ngFor="let val of previewData;let i = index" (click)="onRowClick(val)">
+                    <td>{{ val.OutletName }}</td>
+                    <td>
+                      
+                        <mat-checkbox [(ngModel)]="val.checked"></mat-checkbox>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <mat-card *ngIf="onRequest" style="display: flex; justify-content: center; align-items: center">
+        <mat-spinner></mat-spinner>
+    </mat-card>
+    <div class="btn-area">
+        <button mat-raised-button (click)="doAction()">Ok</button>
+    </div>
+</div>

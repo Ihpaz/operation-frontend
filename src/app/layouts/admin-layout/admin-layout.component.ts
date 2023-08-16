@@ -5,6 +5,7 @@ import PerfectScrollbar from 'perfect-scrollbar';
 import * as $ from "jquery";
 import { filter, Subscription } from 'rxjs';
 import { GlobalService } from 'app/services/global.service';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-admin-layout',
@@ -15,14 +16,24 @@ export class AdminLayoutComponent implements OnInit {
   private _router: Subscription;
   private lastPoppedUrl: string;
   private yScrollStack: number[] = [];
+  isSmallScreen:boolean = false;
 
-  constructor( public location: Location, private router: Router, private _globalService: GlobalService,
+  username: string='';
+
+  constructor( 
+     public location: Location,
+     private router: Router,
+     private _globalService: GlobalService,
+     private _mediaMatcher: MediaMatcher,
     ) {}
 
-  ngOnInit() {
-    console.log('layout component')
-    this._globalService.getStorage('userData').then(async (userData) => {
-        if(!userData){
+  async ngOnInit() {
+   
+    const mediaQueryList = this._mediaMatcher.matchMedia('(max-width: 550px)');
+    this.isSmallScreen = mediaQueryList.matches;
+    this.username= await this._globalService.getStorage('username');
+    this._globalService.getStorage('token').then(async (token) => {
+        if(!token){
             this._globalService.redirectPage('/login')
         }
     })
@@ -134,32 +145,37 @@ export class AdminLayoutComponent implements OnInit {
     //       }
     //   });
   }
-  ngAfterViewInit() {
-      this.runOnRouteChange();
-  }
-  isMaps(path){
-      var titlee = this.location.prepareExternalUrl(this.location.path());
-      titlee = titlee.slice( 1 );
-      if(path == titlee){
-          return false;
-      }
-      else {
-          return true;
-      }
-  }
-  runOnRouteChange(): void {
-    if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
-      const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
-      const ps = new PerfectScrollbar(elemMainPanel);
-      ps.update();
-    }
-  }
-  isMac(): boolean {
-      let bool = false;
-      if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {
-          bool = true;
-      }
-      return bool;
+  // ngAfterViewInit() {
+  //     this.runOnRouteChange();
+  // }
+  // isMaps(path){
+  //     var titlee = this.location.prepareExternalUrl(this.location.path());
+  //     titlee = titlee.slice( 1 );
+  //     if(path == titlee){
+  //         return false;
+  //     }
+  //     else {
+  //         return true;
+  //     }
+  // }
+  // runOnRouteChange(): void {
+  //   if (window.matchMedia(`(min-width: 960px)`).matches && !this.isMac()) {
+  //     const elemMainPanel = <HTMLElement>document.querySelector('.main-panel');
+  //     const ps = new PerfectScrollbar(elemMainPanel);
+  //     ps.update();
+  //   }
+  // }
+  // isMac(): boolean {
+  //     let bool = false;
+  //     if (navigator.platform.toUpperCase().indexOf('MAC') >= 0 || navigator.platform.toUpperCase().indexOf('IPAD') >= 0) {
+  //         bool = true;
+  //     }
+  //     return bool;
+  // }
+
+  Logout(){
+    
+    this._globalService.Logout();
   }
 
 }

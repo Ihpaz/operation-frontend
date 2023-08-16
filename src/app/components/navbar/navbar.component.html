@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top">
     <div class="container-fluid">
         <div class="navbar-wrapper">
-          <!-- <a class="navbar-brand" href="javascript:void(0)">{{getTitle()}}</a> -->
+            <!-- <ng-template></ng-template> -->
         </div>
-        <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()">
+        <button mat-raised-button class="navbar-toggler" type="button" (click)="sidebarToggle()" style="height: 50px;">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
             <span class="navbar-toggler-icon icon-bar"></span>
@@ -20,14 +20,14 @@
                 </div>
             </form> -->
             <ul class="navbar-nav">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0)">
                         <i class="material-icons">dashboard</i>
                         <p>
                             <span class="d-lg-none d-md-block">Stats</span>
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="javascript:void(0)" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="material-icons">notifications</i>
@@ -53,13 +53,13 @@
                     </a> -->
                     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
                         <mat-icon>person</mat-icon>
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item (click)="Logout()">
+                            <mat-icon>logout</mat-icon>
+                            <span>Logout</span>
                         </button>
-                        <mat-menu #menu="matMenu">
-                            <button mat-menu-item (click)="Logout()">
-                                <mat-icon>logout</mat-icon>
-                                <span>Logout</span>
-                            </button>
-                        </mat-menu>
+                    </mat-menu>
                 </li>
             </ul>
         </div>

@@ -26,6 +26,7 @@ export class VocDashboardComponent implements OnInit {
     ],
     requestOptions: {
       path: "Api/v1/voc/get-dashboardvocrank-byoutlet/datatable",
+      pathDownload: "Api/v1/voc/url-download-voarank",
       params: [ 
       { key: 'StartDate', value: null },
       { key: 'EndDate', value: null },
@@ -33,6 +34,7 @@ export class VocDashboardComponent implements OnInit {
     ]
     },
     useFilterFields: false,
+    useDownloadPdfButton: true,
     width: "100vw",
     height: "70vh",
     fields: [
@@ -56,7 +58,7 @@ export class VocDashboardComponent implements OnInit {
         title: "DRM",
         width: 100,
         canOrder: true,
-        isSticky: true,
+        isSticky: false,
         filterOptions: {
           canFilter: true,
           filterType: "text",
@@ -84,7 +86,7 @@ export class VocDashboardComponent implements OnInit {
       {
         name: "qty",
         title: "Qty",
-        width: 150,
+        width: 0,
         canOrder: true,
         isSticky: false,
         filterOptions: {
@@ -99,7 +101,7 @@ export class VocDashboardComponent implements OnInit {
       {
         name: "rank",
         title: "Rank",
-        width: 200,
+        width: 0,
         canOrder: true,
         isSticky: false,
         filterOptions: {
@@ -153,7 +155,7 @@ export class VocDashboardComponent implements OnInit {
   rightWidth: number=50;
 
   StartDate:Date=new Date('2023-01-01');
-  EndDate:Date=new Date('2023-06-30');;
+  EndDate:Date=new Date('2023-06-30');
   TypeVoc:string="";
   listCategoryComplaint:string[]=['BBQ','FOOD SAFETY','SIDE DISH','CUSTOMER SERVICE',
   'TOPPER','OUT OF STOCK','WT','LAMIAN','OTHERS','SARAN'
@@ -161,24 +163,58 @@ export class VocDashboardComponent implements OnInit {
 
   barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
+  
     scales: {
       x: {
         stacked: true,
+        ticks: {
+          font: {
+            family: 'Arial',
+            style: 'italic',
+            weight:'bold',
+            size: 14
+          }
+        }
       },
       y: {
-        stacked: true
+        stacked: true,
+        ticks: {
+          font: {
+            family: 'Arial',
+            style: 'italic',
+            weight:'bold',
+            size: 14
+          }
+        }
       }
     },
     plugins: {
       legend: {
         display: true,
+        labels: {
+          font: {
+            family: 'Arial',
+            size: 14,
+            weight: 'bold',
+            style: 'italic'
+          }
+        }
       },
       datalabels: {
         anchor: 'center',
-        align: 'center'
+        align: 'center',
+        display: (context) => {
+          return context.dataset.data[context.dataIndex] !== 0;
+        },
+        font: {
+          family: 'Arial',
+          size: 14,
+          weight: 'bold',
+          style: 'italic'
+        }
       }
-    }
+    },
+    
   };
   barChartType: ChartType = 'bar';
   barChartPlugins = [

@@ -51,7 +51,9 @@ export class FormDetailComponent implements OnInit {
 
     value: any = {};
 
-    isMultiple: string[]=['Multiple choice','Checkboxes','Dropdown']
+    isMultiple: string[]=['Multiple choice','Checkboxes','Dropdown'];
+
+   
 
   async ngOnInit() {
 

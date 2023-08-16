@@ -1,25 +1,27 @@
-<div class="logo">
-    <div class="logo-img">
-        <img src="/assets/img/angular2-logo-red.png"/>
+<div class="clogin">
+    <div class="logo" style="margin-bottom: 10px;">
+        <div class="logo-img">
+            <img src="/assets/img/logo.png"/>
+        </div>
+    </div>
+    <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+        <mat-card class="box">
+          <mat-card-header class="card-title">
+            <mat-card-title>Operational App</mat-card-title>
+          </mat-card-header>
+        
+            <mat-card-content>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Username</mat-label>
+                    <input matInput  type="text" [(ngModel)]="Username">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Password" type="password" [(ngModel)]="Password">
+                </mat-form-field>
+            </mat-card-content>
+            <button mat-stroked-button color="accent" class="btn-block" (click)="Login()" >Login</button>
+         
+        </mat-card>
     </div>
 </div>
-<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
-    <mat-card class="box">
-      <mat-card-header class="card-title">
-        <mat-card-title>Operational App</mat-card-title>
-      </mat-card-header>
-    
-        <mat-card-content>
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Username</mat-label>
-                <input matInput  type="text" [(ngModel)]="Username">
-            </mat-form-field>
-            <mat-form-field class="example-full-width" appearance="fill">
-                <mat-label>Password</mat-label>
-                <input matInput placeholder="Password" type="password" [(ngModel)]="Password">
-            </mat-form-field>
-        </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block" (click)="Login()" >Log in</button>
-     
-    </mat-card>
-  </div>

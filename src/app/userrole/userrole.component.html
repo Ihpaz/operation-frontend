@@ -1,109 +1,43 @@
-<!-- <div class="main-content">
-  <div class="container-fluid">
-      <div class="header">
-        <button mat-fab color="warn" aria-label="">
-            <mat-icon>add</mat-icon>
-        </button>
-      </div>
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header card-header-danger">
-                      <h4 class="card-title ">Outlet List</h4>
-                      <p class="card-category"> List All Outlet</p>
-                  </div>
-                  <div class="card-body">
-                      <div class="table-responsive">
-                          <table class="table">
-                              <thead class=" text-primary">
-                                  <th>
-                                      No
-                                  </th>
-                                  <th>
-                                      Am
-                                  </th>
-                                  <th>
-                                      DM
-                                  </th>
-                                  <th>
-                                      Code
-                                  </th>
-                                  <th>
-                                      Digital Name
-                                  </th>
-                              </thead>
-                              <tbody>
-                                
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        
-      </div>
-  </div>
-</div> -->
 
-<!-- 
+
+
 <div class="title">
-    Master Outlet
+    List User
 </div>
 
 <div class="main-page">
     <div class="content" [class.useBackground]="true">
         <div class="filter-area">
             <div class="input-area">
-                <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
-                    <mat-label>Outlet Code</mat-label>
-                    <input matInput [placeholder]="'Outlet Code'" [(ngModel)]="modelFilter.CodeOutlet">
-                </mat-form-field>
-                <mat-form-field appearance="fill" style="width: 100%;">
-                    <mat-label>Outlet Name</mat-label>
-                    <input matInput [placeholder]="'Outlet Name'" [(ngModel)]="modelFilter.OutletName">
-                </mat-form-field>
+                
+               
             </div>
             <div class="button-area">
-                <button mat-mini-fab [matTooltip]="'Search'" (click)="onFilter()" style="margin-right: 5px;">
-                    <mat-icon>search</mat-icon>
-                </button>
-                <button mat-mini-fab [matTooltip]="'Add'" (click)="addOutlet()">
+                <button mat-mini-fab [matTooltip]="'Add user'" (click)="addUser()">
                     <mat-icon>add</mat-icon>
                 </button>
-                <button mat-mini-fab [matTooltip]="'Download'" (click)="downloadExcel()">
-                    <mat-icon>download</mat-icon>
-                </button>
+               
             </div>
         </div>
         
-        <app-sam-w-table [schema]="tblSchema" [globalValue]="modelFilter" (onDataValue)="onDataValueHandler($event)">
-            <tr *ngFor="let item of datatable;let i=index">
+        <app-sa-w-table [schema]="tblSchema" (onDataValue)="onDataValueHandler($event)" (callbackAction)="callbackActionHandler($event)" >
+            <!-- <tr *ngFor="let item of datatable;let i=index">
                 <td class="td-table">{{ i+1 }}</td>
-                <td class="td-table">{{ item.OutletType }}</td>
+                <td class="td-table">{{ item.OutletName }}</td>
+                <td class="td-table">{{ item.Menu }}</td>
+                <td class="td-table">{{ item.Suka }}</td>
+                <td class="td-table">{{ item.Rekom }}</td>
+                <td class="td-table">{{ item.Rating }}</td>
+                <td class="td-table">{{ item.Saran }}</td>
+                <td class="td-table">{{ item.Voc_Date }}</td>
+                <td class="td-table">{{ item.Source }}</td>
                 <td class="td-table">{{ item.Am }}</td>
                 <td class="td-table">{{ item.Drm }}</td>
-                <td class="td-table">{{ item.CodeOutlet }}</td>
-                <td class="td-table">{{ item.OutletName }}</td>
-                <td class="td-table">{{ item.DistrictArea }}</td>
-                <td class="td-table">{{ item.Ownership }}</td>
-                <td class="td-table">
-                    <mat-chip-list aria-label="Fish selection">
-                        <mat-chip class="chip-warn" *ngIf="item.OutletStatus=='CLOSED'" selected>{{ item.OutletStatus }}</mat-chip>
-                        <mat-chip class="chip-progress" *ngIf="item.OutletStatus=='ON PROGRESS'" selected>{{ item.OutletStatus }}</mat-chip>
-                        <mat-chip class="chip-primary" *ngIf="item.OutletStatus=='OPEN'" selected>{{ item.OutletStatus }}</mat-chip>
-                    </mat-chip-list>
-                  
-                </td>
-                <td class="td-table">{{ item.Address }}</td>
-                <td class="td-table">
-                    <button mat-mini-fab [matTooltip]="'View'" (click)="editOutlet(item.id)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
-                    <button mat-mini-fab [matTooltip]="'Delete'" (click)="deleteOutlet(item.id)">
-                        <mat-icon>delete</mat-icon>
-                    </button>
-                </td>
-            </tr>
-        </app-sam-w-table>
+                <td class="td-table">{{ item.Category }}</td>
+               
+            </tr> -->
+           
+            
+        </app-sa-w-table>
     </div>
-</div> -->
+</div>

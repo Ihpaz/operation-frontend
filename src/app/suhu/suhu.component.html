@@ -1,0 +1,24 @@
+
+
+
+<div class="title">
+    List Suhu
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackground]="true">
+        <div class="filter-area">
+            <div class="input-area">
+               
+               
+            </div>
+            <div class="button-area">
+              
+               
+            </div>
+        </div>
+        
+        <app-sa-w-table [schema]="tblSchema" (onDataValue)="onDataValueHandler($event)" (callbackAction)="callbackActionHandler($event)" > 
+        </app-sa-w-table>
+    </div>
+</div>

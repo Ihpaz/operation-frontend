@@ -1,0 +1,55 @@
+
+
+
+<div class="title">
+    List Attendance
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackground]="true">
+        <div class="filter-area">
+            <div class="input-area">
+                <input id="fileInput"   hidden type="file" name="file"  (change)="fileChange($event.target.files)" [accept]="acceptExt">
+                <mat-form-field appearance="fill" style="width: 100%;" *ngIf="!Attachment" >
+                    <mat-label>attachment</mat-label>
+                    <input matInput readonly >
+                    <mat-icon class="tappable" *ngIf="(!Attachment)" (click)="attachFile()"   matSuffix >attach_file</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="fill" style="width: 100%;" *ngIf="Attachment">
+                    <mat-label class="tappable">{{ Attachment }}</mat-label>
+                    <input matInput readonly required>
+                    <mat-icon class="tappable"  (click)="removeAttachment($event)"  matSuffix *ngIf="Attachment">cancel</mat-icon>
+                </mat-form-field>
+               
+            </div>
+            <div class="button-area">
+                <button mat-mini-fab [matTooltip]="'Upload Template'" (click)="importTemplateAttendance()" >
+                    <mat-icon>upload</mat-icon>
+                </button>
+                <button mat-mini-fab [matTooltip]="'Download Template'" (click)="exportTemplateAttendance()" >
+                    <mat-icon>download</mat-icon>
+                </button>
+            </div>
+        </div>
+        
+        <app-sa-w-table [schema]="tblSchema" (onDataValue)="onDataValueHandler($event)" (callbackAction)="callbackActionHandler($event)" >
+            <!-- <tr *ngFor="let item of datatable;let i=index">
+                <td class="td-table">{{ i+1 }}</td>
+                <td class="td-table">{{ item.OutletName }}</td>
+                <td class="td-table">{{ item.Menu }}</td>
+                <td class="td-table">{{ item.Suka }}</td>
+                <td class="td-table">{{ item.Rekom }}</td>
+                <td class="td-table">{{ item.Rating }}</td>
+                <td class="td-table">{{ item.Saran }}</td>
+                <td class="td-table">{{ item.Voc_Date }}</td>
+                <td class="td-table">{{ item.Source }}</td>
+                <td class="td-table">{{ item.Am }}</td>
+                <td class="td-table">{{ item.Drm }}</td>
+                <td class="td-table">{{ item.Category }}</td>
+               
+            </tr> -->
+           
+            
+        </app-sa-w-table>
+    </div>
+</div>

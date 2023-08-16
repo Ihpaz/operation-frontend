@@ -3,6 +3,7 @@ import { OutletModalComponent } from './modal/outlet-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { GlobalService } from 'app/services/global.service';
 import { ISAMWTable } from 'app/components/widgets/sam-w-table/sam-w-table.component';
+import { DynamicService } from 'app/services/dynamic.service';
 
 @Component({
   selector: 'app-outlet',
@@ -36,6 +37,7 @@ export class OutletComponent implements OnInit {
   
   constructor(   
       private _globalService: GlobalService,
+      private _dynamicService: DynamicService,
       private _dialog: MatDialog
     ) { }
 
@@ -81,7 +83,6 @@ export class OutletComponent implements OnInit {
       data['EmpIDList'].push(dt.EmpID)
     }
 
-    console.log(data,'idlist')
 
     const dialogRef = this._dialog.open(OutletModalComponent, {
       width: '500px',
@@ -133,6 +134,24 @@ export class OutletComponent implements OnInit {
       this._globalService.showNotif(error.message);
     } finally {
       
+    }
+
+  }
+
+  async getData() {
+    try {
+       this._dynamicService.showLoader();
+      const req = await this._globalService.runRequest(
+        'POST',
+        `api/v1/Outlets/importRawData`,
+         
+      );
+
+      return req;
+    } catch (error) {
+      this._globalService.showNotif(error.message);
+    } finally {
+      this._globalService.eventPublish('global:showLoader', false);
     }
 
   }

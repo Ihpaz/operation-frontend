@@ -5,6 +5,7 @@ export interface ISAWTableDyn {
     pageSize: number[];
     requestOptions: IRequestOptions;
     useFilterFields: boolean;
+    useDownloadPdfButton: boolean;
     width: string;
     height: string;
     withCheckbox?: boolean;

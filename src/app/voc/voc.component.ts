@@ -135,13 +135,13 @@ export class VocComponent implements OnInit {
     
       {
         name: "Voc_Date",
-        title: "Voc_Date",
+        title: "Voc Date",
         width: 80,
         canOrder: true,
         isSticky: false,
         filterOptions: {
           canFilter: true,
-          filterType: "Date",
+          filterType: "date",
           filterSelect: {
             path: null,
             params: []
@@ -442,7 +442,7 @@ export class VocComponent implements OnInit {
   async callbackActionHandler(action: any) {
     try {
       
-          await this.deleteForm(action);
+          await this.deleteForm(action.value);
 
     } catch (error) {
         // this._globalService.showSnackBar(error.message);

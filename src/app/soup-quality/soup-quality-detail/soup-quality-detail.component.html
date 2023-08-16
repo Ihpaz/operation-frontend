@@ -1,0 +1,247 @@
+
+
+
+<div class="title">
+    List Form Digital Checklist
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackgroundHeader]="true" style="width: 15%;margin-left: 80%;" *ngIf="isSmallScreen">
+        <div class="filter-area">
+            <div class="input-area">
+               
+               
+            </div>
+            <div class="button-area">
+              
+                <button mat-mini-fab [matTooltip]="'save'" (click)="doSave()">
+                    <mat-icon>save</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="content" [class.useBackgroundHeader]="true" *ngIf="!isSmallScreen">
+      <div class="filter-area">
+          <div class="input-area">
+             
+             
+          </div>
+          <div class="button-area">
+            
+              <button mat-mini-fab [matTooltip]="'save'" (click)="doSave()">
+                  <mat-icon>save</mat-icon>
+              </button>
+          </div>
+      </div>
+  </div>
+
+    <div class="content" [class.useBackground]="true" style="margin-top: 100px;">
+
+        <mat-card class="example-card">
+            <mat-card-header style="background: aliceblue;text-align: center;">
+              
+                <h1 style="margin: auto;">
+                  Laporan Pengecekan App Sheet Konsistensi GL
+                </h1>
+                <mat-divider></mat-divider>
+              
+              <mat-card-subtitle>
+                
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <!-- <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Tittle</mat-label>
+                    <input matInput [placeholder]="'Tittle'" [(ngModel)]="schema.Tittle" >
+                </mat-form-field>
+        
+                <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Remarks</mat-label>
+                    <textarea matInput rows="5" [placeholder]="'Remarks'" [(ngModel)]="schema.Remarks">
+                        
+                    </textarea>
+                </mat-form-field> -->
+                <br/>
+                <p>PASTIKAN PENGISIAN APP SHEETS SUDAH DILAKUKAN DENGAN KONSISTEN, LENGKAP, DAN TERPERCAYA</p>
+
+                <p><a href="https://www.appsheet.com/Account/Login?returnUrl=https%3A%2F%2Fwww.appsheet.com%2Fstart%2F9a4c9367-9a70-4361-b21c-6ef4574660a4&amp;provider=google&amp;fullScope=False&amp;appName=SMS#appName=AppGallery-10305&amp;group=%5B%5D&amp;sort=%5B%7B%22Column%22:%22ShortName%22,%22Order%22:%22Ascending%22%7D,%7B%22Column%22:%22DateCreated%22,%22Order%22:%22Descending%22%7D%5D&amp;table=Shared+with+me&amp;view=Shared+with+me"><strong>LINK DASHBOARD APP SHEETS</strong></a><br />
+                <br />
+                <u>NOTES:</u></p>
+                
+                <p>- Pengecekan oleh&nbsp;<strong>Supervisor&nbsp;</strong>yaitu&nbsp;jam 10.00 s/d 17.00&nbsp;sesuai zona waktunya&nbsp;untuk kuah series dan kuah klasik</p>
+                
+                <p>&nbsp;</p>
+                
+                <p>- Pengecekan oleh&nbsp;<strong>AM&nbsp;&nbsp;</strong>yaitu&nbsp;<strong>sampling&nbsp;</strong>1 outlet&nbsp;<strong>yang berbeda tiap harinya</strong>&nbsp;mulai dari jam 10.00 s/d 14.00&nbsp;sesuai zona waktunya&nbsp;untuk kuah series dan kuah klasik</p>
+                
+                <p><strong><em><u>*Jika DRM memegang outlet juga maka verifikasi sbg AM Group, bukan DRM Group</u></em></strong><br />
+                &nbsp;</p>
+                
+                <p>- Pengecekan oleh&nbsp;<strong>DRM&nbsp;</strong>yaitu&nbsp;<strong>sampling&nbsp;</strong>1 outlet&nbsp;<strong>yang berbeda tiap harinya</strong>&nbsp;mulai dari jam 10.00 s/d 15.30&nbsp;sesuai zona waktunya&nbsp;untuk kuah series dan kuah klasik</p>
+                
+                  
+              <mat-divider></mat-divider>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+            <mat-card-footer>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+
+    <div class="content" [class.useBackground]="true">
+      <mat-card class="example-card">
+          <mat-card-header>
+            <mat-card-title>
+                Outlet Name
+            </mat-card-title>
+            <mat-card-subtitle>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-divider></mat-divider>   
+            <mat-form-field appearance="fill" style="width: 100%;">
+              <input matInput [placeholder]="'Outlet Name'" [(ngModel)]="outlet" readonly>
+          </mat-form-field>  
+          </mat-card-content>
+      </mat-card>
+    </div>
+
+    <ng-container *ngFor="let item of schema.Questions;let i=index">
+        <div class="content" [class.useBackground]="true">
+            <mat-card class="example-card" style="z-index: inherit;">
+                <mat-card-header>
+                  <mat-card-subtitle>
+
+                    <!-- <ng-container style="display: flex;">
+                      
+                      <quill-view [content]="item.QuestionName" format="html" theme="snow"></quill-view>
+                    </ng-container> -->
+
+                    <h1 style="margin: auto;color: black;display: flex;" >
+                      {{i+1}}. 
+                      <P  [innerHTML]="sanitizeHtml(item.QuestionName)"></P>
+                     <!-- {{i+1}}. {{item.QuestionName}}  -->
+                    </h1>
+                  </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                  <!-- <mat-form-field appearance="fill" style="width: 100%;">
+                    <mat-label>Questions</mat-label>
+                    <input matInput [placeholder]="'Tittle'" [(ngModel)]="item.QuestionName" >
+                  </mat-form-field> -->
+
+                  
+
+                  <mat-divider></mat-divider>
+
+                  <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Short Answer'">
+                    <mat-label>Your Answer</mat-label>
+                    <input matInput placeholder="Answer" (change)="addUserAnswer(i,item,$event.target.value)"
+                    [value]="item.AnswerValue">
+                  </mat-form-field>
+
+                  <mat-form-field class="example-full-width"  *ngIf="item.QuestionType=='Paragraph'">
+                    <mat-label>Example</mat-label>
+                    <textarea matInput placeholder="Example" (change)="addUserAnswer(i,item,$event.target.value)"
+                    [value]="item.AnswerValue"></textarea>
+                  </mat-form-field>
+
+                  <ng-container  *ngIf="item.QuestionType=='File Upload'">
+                    <div class="content-img-card" *ngIf="item.AnswerValue">
+                      <img mat-card-image [src]="item.AnswerValue">
+
+                       <mat-icon class="tappable" (click)="removeAttachment($event,i)" 
+                        matSuffix>cancel</mat-icon>
+
+                      <!-- <iframe [src]="'https://drive.google.com/file/d/1MVsocdtgrDxghYqEVVRHmwo5utQEH7P7/view?usp=drive_link'" frameborder="0" width="100%" height="100%"></iframe> -->
+
+                  </div>
+                    <mat-label class="tappable" *ngIf="item.AnswerValue">{{ item.AnswerValue }}</mat-label>
+
+                    <ng-container *ngIf="!item.AnswerValue">
+                      <input id="fileInput"   hidden type="file" name="file"  (change)="fileChange($event.target.files,i)" >
+                      <mat-form-field appearance="fill" style="width: 100%;" >
+                          <mat-label>attachment</mat-label>
+                          <input matInput readonly >
+                          <mat-icon class="tappable"  matSuffix (click)="attachFile()">attach_file</mat-icon>
+                      </mat-form-field>
+                    </ng-container>
+                 
+                  </ng-container>
+
+                  <mat-radio-group aria-labelledby="example-radio-group-label" *ngIf="item.QuestionType=='Multiple choice'" style="display: grid;">
+                    <mat-radio-button class="example-radio-button" *ngFor="let itemO of item.Options;let x=index" [value]="itemO.id" 
+                    [checked]="itemO.id == item.AnswerValue"
+                        (click)="addUserAnswer(i,item,itemO.id)">
+                       <span style="color: black;">{{itemO.label}}</span>
+                    </mat-radio-button>
+                 
+                  </mat-radio-group>
+
+                  <section class="example-section" *ngIf="item.QuestionType=='Checkboxes'">
+                    <p>
+                        <mat-checkbox *ngFor="let itemO of item.Options;let x=index" style="display: block;" (click)="addUserAnswer(i,item,itemO.label,item.QuestionType)">
+                          <span style="color: black;">{{itemO.label}}</span>
+                        </mat-checkbox>
+                    </p>
+                   
+                  </section>
+
+                  <ng-container *ngIf="item.QuestionType=='Dropdown'">
+                      <!-- <mat-form-field class="example-full-width" *ngFor="let itemO of item.Options;let x=index" style="display: flex;">
+                        <div style="display: flex;">
+                            <input matInput placeholder="option" [(ngModel)]="itemO.label" >
+                        </div>
+
+
+                      </mat-form-field> -->
+
+                      <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;">
+                        <!-- <mat-label>Category Complaint</mat-label> -->
+                        <mat-select [(ngModel)]="item.AnswerValue" (ngModelChange)="addUserAnswer(i,item,$event,item.QuestionType)" >
+                        
+                            <mat-option  *ngFor="let itemO of item.Options;let x=index" [value]="itemO.id">
+                                {{itemO.label}}
+                            </mat-option>
+        
+                        </mat-select>
+                      </mat-form-field>
+                  </ng-container>
+
+                  <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Date'">
+                    <input matInput  [matDatepicker]="DateReportPicker" readonly>
+                    <mat-datepicker-toggle  matSuffix [for]="DateReportPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #DateReportPicker disabled="false"></mat-datepicker>
+                  </mat-form-field>
+                 
+                  
+                    <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Time'">
+                        <mat-label> Timepicker</mat-label>
+                        <input matInput  [ngxMatTimepicker]="picker">
+                        <ngx-mat-timepicker #picker></ngx-mat-timepicker>
+                    </mat-form-field>
+                    
+                 
+                  
+
+                  <mat-divider></mat-divider>
+                </mat-card-content>
+                <mat-card-actions>
+                    <!-- <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="deleteQuestions(item.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button> -->
+                </mat-card-actions>
+                <mat-card-footer>
+                    
+                </mat-card-footer>
+            </mat-card>
+        </div>
+    </ng-container>
+   
+   
+
+
+</div>
+

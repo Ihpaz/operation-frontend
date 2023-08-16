@@ -6,7 +6,7 @@
 </div>
 
 <div class="main-page">
-    <div class="content" [class.useBackground]="true">
+    <div class="content" [class.useBackgroundHeader]="true">
         <div class="filter-area">
             <div class="input-area">
                
@@ -30,11 +30,17 @@
               <mat-card-subtitle>Form Data</mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-                <mat-form-field appearance="fill" style="width: 100%;">
+                 <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>Tittle</mat-label>
                     <input matInput [placeholder]="'Tittle'" [(ngModel)]="schema.Tittle" >
-                </mat-form-field>
-        
+                       
+                </mat-form-field> 
+
+                <!-- <mat-label>Tittle</mat-label>
+                <quill-editor [(ngModel)]="schema.Tittle" ></quill-editor>
+                <mat-divider style="margin-top: 15px;"></mat-divider>
+                <mat-label>Remarks</mat-label>
+                <quill-editor [(ngModel)]="schema.Remarks" ></quill-editor> -->
                 <mat-form-field appearance="fill" style="width: 100%;">
                     <mat-label>Remarks</mat-label>
                     <textarea matInput rows="5" [placeholder]="'Remarks'" [(ngModel)]="schema.Remarks">
@@ -55,13 +61,26 @@
         <div class="content" [class.useBackground]="true">
             <mat-card class="example-card">
                 <mat-card-header>
-                  <mat-card-subtitle>Questions Data</mat-card-subtitle>
+                  <mat-card-subtitle>
+                    <!-- <mat-label>Questions</mat-label>
+                    <quill-editor [(ngModel)]="item.QuestionName"  [modules]="quillModules">
+                        {{item.QuestionNam}}
+                    </quill-editor> -->
+                    <editor
+                    [init]="{ plugins: 'lists link image table code help wordcount' }"
+                    apiKey="llkntfmroh5j99t9zc3h1028splbxbr5pvh9dzw8az1127wz"
+                    [(ngModel)]="item.QuestionName" (ngModelChange)="changeQuestions(i,$event,'QuestionName')"
+                  ></editor>
+                  
+                  </mat-card-subtitle>
                 </mat-card-header>
                 <mat-card-content>
-                  <mat-form-field appearance="fill" style="width: 100%;">
-                    <mat-label>Questions</mat-label>
-                    <input matInput [placeholder]="'Tittle'" [(ngModel)]="item.QuestionName" (ngModelChange)="changeQuestions(i,$event,'QuestionName')">
-                  </mat-form-field>
+                
+                    <!-- <mat-form-field appearance="fill" style="width: 100%;">
+                        <mat-label>Questions</mat-label>
+                        <input matInput [placeholder]="'Tittle'" [(ngModel)]="item.QuestionName" (ngModelChange)="changeQuestions(i,$event,'QuestionName')">
+                    </mat-form-field> -->
+                
 
                   <mat-form-field appearance="fill" style="width: 100%;margin-right: 10px;" >
                         <mat-label>Question Type</mat-label>
@@ -96,13 +115,13 @@
                   <mat-divider></mat-divider>
 
                   <mat-form-field class="example-full-width" *ngIf="item.QuestionType=='Short Answer'">
-                    <mat-label>Example</mat-label>
-                    <input matInput placeholder="Example" >
+                    <mat-label>Your Answer</mat-label>
+                    <input matInput placeholder="Your Answer" >
                   </mat-form-field>
 
                   <mat-form-field class="example-full-width"  *ngIf="item.QuestionType=='Paragraph'">
-                    <mat-label>Example</mat-label>
-                    <textarea matInput placeholder="Example"></textarea>
+                    <mat-label>Your Answer</mat-label>
+                    <textarea matInput placeholder="Your Answer"></textarea>
                   </mat-form-field>
 
                   <ng-container  *ngIf="item.QuestionType=='File Upload'">
@@ -116,7 +135,7 @@
 
                   <mat-radio-group aria-labelledby="example-radio-group-label" *ngIf="item.QuestionType=='Multiple choice'" style="display: grid;">
                     <mat-radio-button class="example-radio-button" *ngFor="let itemO of item.Options;let x=index">
-                        <input matInput placeholder="Example" [(ngModel)]="itemO.label"
+                        <input matInput placeholder="Your Answer" [(ngModel)]="itemO.label"
                          (ngModelChange)="changeOptions(i,x,$event)">
 
                         <button mat-icon-button (click)="deleteOption(i,itemO.id)" aria-label="Example icon button with a open in new tab icon">

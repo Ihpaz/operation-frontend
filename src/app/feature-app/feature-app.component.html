@@ -1,7 +1,7 @@
 <div class="main-content">
   <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngIf="role=='superadmin'">
             <div class="card card-stats">
                 <div class="card-header card-header-success card-header-icon">
                     <div class="card-icon">
@@ -58,14 +58,14 @@
               <div class="card card-stats">
                   <div class="card-header card-header-info card-header-icon">
                       <div class="card-icon">
-                          <i class="fa fa-twitter"></i>
+                          <i class="fa fa-bar-chart"></i>
                       </div>
-                      <p class="card-category">Issue Resolution Systems</p>
+                      <p class="card-category">Dashboard Digital Checklist Systems</p>
                       
                   </div>
                   <div class="card-footer">
                       <div class="stats">
-                        <button mat-button (click)="gotoApp('voc')">Go to App..</button>
+                        <button mat-button (click)="gotoApp('ddc')">Go to App..</button>
                       </div>
                   </div>
               </div>

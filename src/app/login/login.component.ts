@@ -38,9 +38,11 @@ export class LoginComponent implements OnInit {
 
     if(data){
 
-      console.log(data)
-      await this._globalService.setStorage('userData', data.userData);
+      await this._globalService.setStorage('role', data.data.Role);
+      await this._globalService.setStorage('username', data.data.Username);
       await this._globalService.setStorage('token', data.access_token);
+      await this._globalService.setStorage('outlet', data.data.Outlet);
+      
 
       
       this.router.navigate(['dashboard']);

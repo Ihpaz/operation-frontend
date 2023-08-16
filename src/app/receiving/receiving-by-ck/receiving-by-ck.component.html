@@ -1,0 +1,63 @@
+<div class="title">
+  Receiving By CK
+</div>
+
+<div class="main-page">
+    <div class="content" [class.useBackground]="true">
+        <div class="filter-area">
+            <div class="input-area">
+                
+                <mat-form-field appearance="fill" [ngStyle]="{'width': '100%' }">
+                    <mat-label>Receiving Date</mat-label>
+                    <input matInput [(ngModel)]="modelFilter.ReceivingDate" [matDatepicker]="HDRptDateStartPicker" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="HDRptDateStartPicker"></mat-datepicker-toggle>
+                    <mat-datepicker #HDRptDateStartPicker disabled="false"></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="width: 100%;margin-left: 10px;">
+                    <mat-label>Outlet Name</mat-label>
+                    <input matInput [placeholder]="'Outlet Name'" [(ngModel)]="modelFilter.OutletName">
+                </mat-form-field>
+
+            </div>
+            <div class="button-area">
+                <button mat-mini-fab [matTooltip]="'Search'" (click)="onFilter()" style="margin-right: 5px;">
+                    <mat-icon>search</mat-icon>
+                </button>
+                <button mat-mini-fab [matTooltip]="'submit'" (click)="doSave()" style="margin-right: 5px;">
+                    <mat-icon>send</mat-icon>
+                </button>
+                <!-- <button mat-mini-fab [matTooltip]="'Add'" (click)="addOutlet()">
+                    <mat-icon>add</mat-icon>
+                </button>
+                <button mat-mini-fab [matTooltip]="'Download'" (click)="downloadExcel()">
+                    <mat-icon>download</mat-icon>
+                </button> -->
+            </div>
+        </div>
+        
+        <app-sam-w-table [schema]="tblSchema" [globalValue]="modelFilter" (onDataValue)="onDataValueHandler($event)">
+            <tr *ngFor="let item of datatable;let i=index" style="text-align: center;">
+                <td class="td-table">{{ i+1 }}</td>
+                <td class="td-table">{{ item.OutletName }}</td>
+                <td class="td-table">{{ item.DistrictArea }}</td>
+                <td class="td-table">
+                    <mat-form-field appearance="fill">
+                        <mat-select 
+                        [ngModel]="item.Value" 
+                        [ngModelOptions]="{updateOn:'blur'}"
+                        (ngModelChange)="changeValueCk($event,i)" >
+                            <mat-option  [value]="1">
+                               ADA
+                            </mat-option>
+                            <mat-option  [value]="2">
+                                TIDAK ADA
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </td>
+               
+            </tr>
+        </app-sam-w-table>
+    </div>
+</div>

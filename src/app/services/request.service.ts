@@ -38,7 +38,6 @@ export class RequestService {
                     body = await this.generateBody(iRequest.body);
                 }
 
-                console.log(iRequest,'ireq2')
 
                 const HttpClient = Axios.create();
                 let resp: any = null;
@@ -65,7 +64,6 @@ export class RequestService {
 
                 resolve(resp.data);
             } catch (error) {
-                console.log(error,'reqservice');
                 // reject(error)
 
                 if (error.response) {
