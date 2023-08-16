@@ -44,6 +44,7 @@ import { KitchenPrepDashboardComponent } from 'app/kitchen-prep/kitchen-prep-das
 import { FoodLooksDashboardComponent } from 'app/food-looks/food-looks-dashboard/food-looks-dashboard.component';
 import { SuhuDashboardComponent } from 'app/suhu/suhu-dashboard/suhu-dashboard.component';
 import { NpsDashboardComponent } from 'app/nps/nps-dashboard/nps-dashboard.component';
+import { ManagementDashboardComponent } from 'app/management-dashboard/management-dashbaord.component';
 
 export const AdminLayoutRoutes: Routes = [
    
@@ -89,6 +90,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'foodlooks/dashboard', component:FoodLooksDashboardComponent},
     { path: 'suhu/dashboard', component:SuhuDashboardComponent},
     { path: 'nps/dashboard', component:NpsDashboardComponent},
+    { path: 'management/dashboard', component:ManagementDashboardComponent},
+    
 
     
     

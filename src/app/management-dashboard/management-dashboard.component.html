@@ -2,7 +2,7 @@
 
 
 <div class="title">
-    List Closing
+    Management Dashboard
 </div>
 
 <div class="main-page">
@@ -62,10 +62,12 @@
             <!-- <button mat-mini-fab [matTooltip]="'Clear'" >
                 <mat-icon>close</mat-icon>
             </button> -->
-            <button mat-mini-fab [matTooltip]="'Refresh'" >
+            <button mat-mini-fab [matTooltip]="'Refresh'" (click)="onFilter()">
                 <mat-icon>refresh</mat-icon>
             </button>
-           
+            <button mat-raised-button color="primary" [matTooltip]="'Get Data'" (click)="getData()">
+                Get Data
+            </button>
         
         </div>
 
@@ -88,67 +90,67 @@
                         <td rowspan="13">COMPLIANCE</td>
                         <td>1</td>
                         <td>ATTENDANCE</td>
-                        <td></td>
+                        <td>{{dtAttendanceComp}}</td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>KITCHEN PREPARATION</td>
-                        <td></td>
+                        <td>{{dtKitchenComp}}</td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>FRONT PREPARATION</td>
-                        <td></td>
+                        <td>{{dtFrontComp}}</td>
                     </tr>
                     <tr>
                         <td>4</td>
                         <td>FOOD QUALITY CHECK (WPART)</td>
-                        <td></td>
+                        <td>{{dtFoodComp}}</td>
                     </tr>
                     <tr>
                         <td>5</td>
                         <td>SOUP QUALITY</td>
-                        <td></td>
+                        <td>{{dtSoupComp}}</td>
                     </tr>
                     <tr>
                         <td>6</td>
                         <td>PEST</td>
-                        <td></td>
+                        <td>{{dtPestComp}}</td>
                     </tr>
                     <tr>
                         <td>7</td>
                         <td>SUHU</td>
-                        <td></td>
+                        <td>{{dtSuhuComp}}</td>
                     </tr>
                     <tr>
                         <td>8</td>
                         <td>NPS</td>
-                        <td></td>
+                        <td>{{dtNpsComp}}</td>
                     </tr>
                     <tr>
                         <td>9</td>
                         <td>RED BILL</td>
-                        <td></td>
+                        <td>{{dtRedBillComp}}</td>
                     </tr>
                     <tr>
                         <td>10</td>
                         <td>CUSTOMER EXPERIENCE & BRIEFING</td>
-                        <td></td>
+                        <td>{{dtCxComp}}</td>
                     </tr>
                     <tr>
                         <td>11</td>
                         <td>STORAGE CHECKLIST</td>
-                        <td></td>
+                        <td>{{dtStorageComp}}</td>
                     </tr>
                     <tr>
                         <td>12</td>
                         <td>RECEIVING</td>
-                        <td></td>
+                        <td>{{dtReceivingComp}}</td>
                     </tr>
                     <tr>
                         <td>13</td>
                         <td>CLOSING (CLEANING)</td>
-                        <td></td>
+                        <td>{{dtClosingComp}}</td>
                     </tr>
                     <tr>
                         <td colspan="3">AVERAGE</td>
@@ -158,57 +160,57 @@
                         <td rowspan="13">COMPLIANCE</td>
                         <td>1</td>
                         <td>ATTENDANCE</td>
-                        <td></td>
+                        <td>{{dtAttendanceQua}}</td>
                     </tr>
                     <tr>
                         <td>2</td>
                         <td>FOOD QUALITY CHECK (WPART)</td>
-                        <td></td>
+                        <td>{{dtFoodQua}}</td>
                     </tr>
                     <tr>
                         <td>3</td>
                         <td>SOUP QUALITY</td>
-                        <td></td>
+                        <td>{{dtSoupQua}}</td>
                     </tr>
                     <tr>
                         <td>4</td>
                         <td>PEST</td>
-                        <td></td>
+                        <td>{{dtPestQua}}</td>
                     </tr>
                     <tr>
                         <td>5</td>
                         <td>SUHU</td>
-                        <td></td>
+                        <td>{{dtSuhuQua}}</td>
                     </tr>
                     <tr>
                         <td>6</td>
                         <td>NPS</td>
-                        <td></td>
+                        <td>{{dtNpsQua}}</td>
                     </tr>
                     <tr>
                         <td>7</td>
                         <td>RED BILL</td>
-                        <td></td>
+                        <td>{{dtRedBillQua}}</td>
                     </tr>
                     <tr>
                         <td>8</td>
                         <td>CUSTOMER EXPERIENCE & BRIEFING</td>
-                        <td></td>
+                        <td>{{dtCxQua}}</td>
                     </tr>
                     <tr>
                         <td>9</td>
                         <td>STORAGE CHECKLIST</td>
-                        <td></td>
+                        <td>{{dtStorageQua}}</td>
                     </tr>
                     <tr>
                         <td>9</td>
                         <td>RECEIVING</td>
-                        <td></td>
+                        <td>{{dtReceivingQua}}</td>
                     </tr>
                     <tr>
                         <td>11</td>
                         <td>CLOSING (CLEANING)</td>
-                        <td></td>
+                        <td>{{dtClosingQua}}</td>
                     </tr>
                 </tbody>
             </table>
