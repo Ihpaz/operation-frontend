@@ -8,7 +8,7 @@ import { DynamicService } from 'app/services/dynamic.service';
 @Component({
   selector: 'app-managemnet-dashboard',
   templateUrl: './management-dashboard.component.html',
-  styleUrls: ['./management-dashboard.component.css']
+  styleUrls: ['./management-dashboard.component.scss']
 })
 export class ManagementDashboardComponent implements OnInit {
 
@@ -65,6 +65,9 @@ export class ManagementDashboardComponent implements OnInit {
   dtClosingComp     =0
   dtClosingQua      =0
 
+  AvgCompliance:any     =0
+  AvgQuality:any        =0
+
   constructor(   
       private _globalService: GlobalService,
       private _dialog: MatDialog,
@@ -85,7 +88,7 @@ export class ManagementDashboardComponent implements OnInit {
 
       await this.getOutlet();
       await this.getAm();
-      await this.getDashboardGeneral();
+      await this.onFilter;
   }
 
 
@@ -93,8 +96,9 @@ export class ManagementDashboardComponent implements OnInit {
     this.datatable = value;
   }
 
-  onFilter() {
-    this.getDashboardGeneral()
+  async onFilter() {
+    await this.getDashboardGeneral()
+    this.getAverage();
   }
 
 
@@ -256,5 +260,34 @@ export class ManagementDashboardComponent implements OnInit {
       this._globalService.eventPublish('global:showLoader', false);
     }
   }
+
+  async getAverage(){
+   this.AvgCompliance=((
+      this.dtAttendanceComp+
+      this.dtKitchenComp+
+      this.dtFrontComp+
+      this.dtFoodComp+
+      this.dtSoupComp+
+      this.dtPestComp+
+      this.dtSuhuComp+
+      this.dtRedBillComp+
+      this.dtCxComp+
+      this.dtStorageComp+
+      this.dtReceivingComp+
+      this.dtClosingComp)/12).toFixed(2);
+
+      this.AvgQuality=((
+        this.dtAttendanceQua+
+        this.dtFoodQua+
+        this.dtSoupQua+
+        this.dtPestQua+
+        this.dtSuhuQua+
+        this.dtCxQua+
+        this.dtStorageQua+
+        this.dtReceivingQua+
+        this.dtClosingQua)/9).toFixed(2);
+    }
+    
+  
  
 }
